@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.bard;
+package edu.cnm.deepdive.bard.controller;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import edu.cnm.deepdive.bard.R;
 
 public class MainActivity extends AppCompatActivity {
 

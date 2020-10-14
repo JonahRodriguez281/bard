@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.bard.ui.gallery;
+package edu.cnm.deepdive.bard.controller.ui.gallery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
