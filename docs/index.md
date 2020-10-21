@@ -20,13 +20,9 @@ The Pomodoro method breaks your workday into 25 minute long chunks, with 5 minut
 * Generate a playlist from your library either at random using your saved library, or from your personal playlists, that has the exact length of 25 minutes, notifying you of your break with a pause in the music.
 * Save the playlist that was generated to be able to use in the future.
 
-## Wireframe
+## [Wireframe](wireframe.md)
 
-[![Bard Wireframe](images/wireframe.png)](pdf/wireframe.pdf)
-
-## Entity Relationship Diagram
-
-[![Bard ERD](images/bard-erd.png)](pdf/bard-erd.pdf)
+## [Entity Relationship Diagram](bard-erd.md)
 
 ## Persistent data
 
