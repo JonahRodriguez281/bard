@@ -2,6 +2,10 @@
 
 The purpose of this app is to keep the user productive through the use of musical incentive. The app creates a playlist (connected to Spotify) with a length based on a timer set by the user to maximize productivity using the Pomodoro Method.
 The Pomodoro method breaks your workday into 25 minute long chunks, with 5 minute breaks in between. After about 4 breaks, the fifth one is longer, which is generally around 15 minutes.
+The app will pull songs form the user's saved music library to then construct a playlist that will play while the user performs their desired tasks from a task list constructed in the application. After the timer expires, the music stops, and then alerts the user that they should take a 5 mintute break.
+After the 5 minute break is up, the user will recieve a notification that the break is over, and they can start another 25 minute long work session. 
+
+The user can choose to save the playlist that was created directly into their Spotify account, so they can use it at a later date. Otherwise, after they've decided their timer, the application will generate a new playlist for the user.
 
 ## Intended users
 
