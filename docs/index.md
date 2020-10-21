@@ -22,7 +22,7 @@ The Pomodoro method breaks your workday into 25 minute long chunks, with 5 minut
 
 ## Wireframe
 
-![Bard Wireframe](images/wireframe.png)
+[![Bard Wireframe](images/wireframe.png)](pdf/bard-erd.pdf)
 
 ## Persistent data
 
