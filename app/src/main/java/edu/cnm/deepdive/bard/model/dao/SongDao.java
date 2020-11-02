@@ -32,11 +32,11 @@ public interface SongDao {
   Single<Integer> delete(Collection<Song> songs);
 
   @Query("SELECT * FROM Song ORDER BY song_name DESC")
-  LiveData<List<Song>> selectByName();
+  LiveData<List<Song>> getSongByName();
 
   @Query("SELECT * FROM Song ORDER BY artist DESC")
-  LiveData<List<Song>> selectByArtist();
+  LiveData<List<Song>> getSongByArtist();
 
   @Query("SELECT * FROM Song ORDER BY album DESC")
-    LiveData<List<Song>> selectByAlbum();
+    LiveData<List<Song>> getSongByAlbum();
 }
