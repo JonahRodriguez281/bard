@@ -8,8 +8,8 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import java.util.Date;
 
+@SuppressWarnings("NotNullFieldNotInitialized")
 @Entity(
-    indices = @Index(value = "spotify_playlist_key"),
     foreignKeys = {
         @ForeignKey(
             entity = User.class,
@@ -31,15 +31,21 @@ public class Task {
   @ColumnInfo(name = "task_id")
   private long taskId;
 
+  @NonNull
   @ColumnInfo(name = "task_name")
   private String taskName;
 
+  @NonNull
   private String description;
 
   private int duration;
 
+  @NonNull
+  @ColumnInfo(index = true)
   private Date start;
 
+  @NonNull
+  @ColumnInfo(index = true)
   private Date end;
 
   @ColumnInfo(name = "break")
@@ -48,9 +54,11 @@ public class Task {
   @ColumnInfo(name = "spotify_playlist_key", index = true)
   private String playlistKey;
 
+  @ColumnInfo(name = "user_id", index = true)
   private long userId;
 
-  private Long taskTypeId;
+  @ColumnInfo(name = "task_type_id", index = true)
+  private long taskTypeId;
 
   public long getTaskId() {
     return taskId;
@@ -60,21 +68,21 @@ public class Task {
     this.taskId = taskId;
   }
 
-
+  @NonNull
   public String getTaskName() {
     return taskName;
   }
 
-  public void setTaskName(String taskName) {
+  public void setTaskName(@NonNull String taskName) {
     this.taskName = taskName;
   }
 
-
+  @NonNull
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@NonNull String description) {
     this.description = description;
   }
 
@@ -86,20 +94,21 @@ public class Task {
     this.duration = duration;
   }
 
-
+  @NonNull
   public Date getStart() {
     return start;
   }
 
-  public void setStart(Date start) {
+  public void setStart(@NonNull Date start) {
     this.start = start;
   }
 
+  @NonNull
   public Date getEnd() {
     return end;
   }
 
-  public void setEnd(Date end) {
+  public void setEnd(@NonNull Date end) {
     this.end = end;
   }
 
@@ -127,11 +136,11 @@ public class Task {
     this.userId = userId;
   }
 
-  public Long getTaskTypeId() {
+  public long getTaskTypeId() {
     return taskTypeId;
   }
 
-  public void setTaskTypeId(Long taskTypeId) {
+  public void setTaskTypeId(long taskTypeId) {
     this.taskTypeId = taskTypeId;
   }
 }

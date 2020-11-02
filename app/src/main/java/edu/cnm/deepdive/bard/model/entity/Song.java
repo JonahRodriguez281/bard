@@ -4,12 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
 @Entity(
     indices = {
-        @Index(value = "song_name"),
-        @Index(value = "artist"),
-        @Index(value = "album")
+        @Index(value = {"song_name", "artist", "album"}, unique = true),
     },
     foreignKeys =
     @ForeignKey(
@@ -21,6 +20,7 @@ import androidx.room.Index;
 )
 public class Song {
 
+  @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "song_id")
   private long songId;
 
@@ -33,6 +33,7 @@ public class Song {
 
   private int songDuration;
 
+  @ColumnInfo(name = "user_id", index = true)
   private long userId;
 
   public long getSongId() {

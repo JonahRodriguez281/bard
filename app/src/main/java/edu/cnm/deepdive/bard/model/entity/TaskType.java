@@ -1,22 +1,27 @@
 package edu.cnm.deepdive.bard.model.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
+@SuppressWarnings("NotNullFieldNotInitialized")
 @Entity(
     indices = @Index(value = "name", unique = true)
 )
 public class TaskType {
 
+  @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "task_type_id")
   private long taskTypeId;
 
-  @ColumnInfo(index = true)
   private String name;
 
+  @NonNull
   private String description;
 
+  @NonNull
   private int duration;
 
   public long getTaskTypeId() {

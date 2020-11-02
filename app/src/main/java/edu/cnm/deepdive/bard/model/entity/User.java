@@ -6,10 +6,11 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+@SuppressWarnings("NotNullFieldNotInitialized")
 @Entity(
     indices = {
-    @Index(value = "oauth_key", unique = true),
-    @Index(value = "account_name")}
+    @Index(value = "oauth_key", unique = true)
+    }
 )
 public class User {
 
@@ -17,11 +18,11 @@ public class User {
   @ColumnInfo(name = "user_id")
   private long userId;
 
-
+  @NonNull
   @ColumnInfo(name = "oauth_key")
   private String oauthKey;
 
-
+  @NonNull
   @ColumnInfo(name = "account_name", index = true)
   private String accountName;
 
