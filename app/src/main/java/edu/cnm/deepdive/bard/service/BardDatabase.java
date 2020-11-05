@@ -29,6 +29,9 @@ public abstract class BardDatabase extends RoomDatabase {
     BardDatabase.context = context;
   }
 
+  public static BardDatabase getInstance() {
+    return InstanceHolder.INSTANCE;
+  }
   public abstract SongDao getSongDao();
 
   public abstract TaskDao getTaskDao();
