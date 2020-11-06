@@ -14,14 +14,14 @@ public class TaskWithType extends Task {
       entityColumn = "task_type_id",
       parentColumn = "task_type_id"
   )
-  private List<TaskType> taskTypes;
+  private TaskType taskType;
 
   @NonNull
-  public List<TaskType> getTaskTypes() {
-    return taskTypes;
+  public TaskType getTaskType() {
+    return taskType;
   }
 
-  public void setTaskTypes(@NonNull List<TaskType> taskTypes) {
-    this.taskTypes = taskTypes;
+  public void setTaskType(@NonNull TaskType taskType) {
+    this.taskType = taskType;
   }
 }

@@ -46,8 +46,8 @@ public interface TaskDao {
   @Query("SELECT * FROM Task WHERE task_id = :taskId")
   LiveData<TaskWithType> getById(long taskId);
 
-  @Query("SELECT * FROM Task WHERE task_name = :taskName")
-  LiveData<List<Task>> getByName(String taskName);
+  @Query("SELECT * FROM Task WHERE task_name LIKE :taskNameFragment")
+  LiveData<List<TaskWithType>> getByName(String taskNameFragment);
 
   @Query("SELECT * FROM Task WHERE spotify_playlist_key = :spotifyPlaylistKey")
   LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey);

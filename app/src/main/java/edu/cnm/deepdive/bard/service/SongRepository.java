@@ -15,9 +15,24 @@ public class SongRepository {
     songDao = BardDatabase.getInstance().getSongDao();
   }
 
-  private Completable save(Song song) {
-    return (
-        (song.getSongId() == 0)
+  public Completable save(Song song) {
+    return (song.getSongId() == 0)
+        ? songDao.insert(song)
+        .doAfterSuccess(song::setSongId)
+        .ignoreElement()
+        : songDao.update(song)
+            .ignoreElement();
+  }
+  public Completable delete(Song song) {
+    return (song.getSongId() == 0)
+        ? Completable.complete()
+        : songDao.delete(song)
+            .ignoreElement();
+    }
+
+
+
+/*        (song.getSongId() == 0)
             ? songDao.insert(song)
             .map((id) -> {
               song.setSongId(id);
@@ -26,7 +41,8 @@ public class SongRepository {
             : songDao.update(song)
                 .map((numRecords) -> song)
     )
-        .ignoreElement(); // Changes Single to Completable
-  }
-  // What I'd expect a user to be able to do with the songs.
+         .ignoreElement(); // Changes Single to Completable
+*/
+
 }
+

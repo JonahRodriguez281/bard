@@ -41,12 +41,15 @@ public interface SongDao {
   @Delete
   Single<Integer> delete(Collection<Song> songs);
 
-  @Query("SELECT * FROM Song WHERE song_id = :songId ORDER BY song_name DESC")
-  LiveData<List<Song>> getSongByName(long songId);
+  @Query("SELECT * FROM Song WHERE song_id = :songId")
+  LiveData<Song> getSongById(long songId);
 
-  @Query("SELECT * FROM Song WHERE song_id = :songId ORDER BY artist DESC")
-  LiveData<List<Song>> getSongByArtist(long songId);
+  @Query("SELECT * FROM Song ORDER BY song_name ASC")
+  LiveData<List<Song>> getSongByName();
 
-  @Query("SELECT * FROM Song WHERE song_id = :songId ORDER BY album DESC")
-  LiveData<List<Song>> getSongByAlbum(long songId);
+  @Query("SELECT * FROM Song ORDER BY artist ASC, song_name ASC")
+  LiveData<List<Song>> getSongByArtist();
+
+  @Query("SELECT * FROM Song ORDER BY album ASC, song_name ASC")
+  LiveData<List<Song>> getSongByAlbum();
 }

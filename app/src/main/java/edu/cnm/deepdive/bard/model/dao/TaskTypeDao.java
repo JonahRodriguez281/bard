@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
+import edu.cnm.deepdive.bard.model.pojo.TaskTypeWithTasks;
 import io.reactivex.Single;
 import java.util.Collection;
 import java.util.List;
@@ -43,5 +44,8 @@ public interface TaskTypeDao {
 
 
   @Query("SELECT * FROM TaskType WHERE task_type_id = :taskTypeId")
-  LiveData<List<TaskType>> select(long taskTypeId);
+  LiveData<TaskTypeWithTasks> getTaskTypeWithTasks(long taskTypeId);
+
+  @Query("SELECT * FROM TaskType WHERE task_type_id = :taskTypeId")
+  LiveData<TaskType> select(long taskTypeId);
 }

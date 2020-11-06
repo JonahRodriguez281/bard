@@ -12,8 +12,8 @@ public class TaskTypeWithTasks extends TaskType {
   @NonNull
   @Relation(
       entity = Task.class,
-      entityColumn = "task_id",
-      parentColumn = "task_id"
+      entityColumn = "task_type_id",
+      parentColumn = "task_type_id"
   )
   private List<Task> tasks;
 
