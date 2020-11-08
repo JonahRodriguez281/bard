@@ -1,9 +1,11 @@
 package edu.cnm.deepdive.bard.service;
 
 import android.content.Context;
+import androidx.lifecycle.LiveData;
 import edu.cnm.deepdive.bard.model.dao.SongDao;
 import edu.cnm.deepdive.bard.model.entity.Song;
 import io.reactivex.Completable;
+import java.util.List;
 
 public class SongRepository {
 
@@ -23,26 +25,20 @@ public class SongRepository {
         : songDao.update(song)
             .ignoreElement();
   }
+
   public Completable delete(Song song) {
     return (song.getSongId() == 0)
         ? Completable.complete()
         : songDao.delete(song)
             .ignoreElement();
-    }
+  }
 
+  LiveData<Song> getSongById(long songId) {
+    return songDao.getSongById(songId);
+  }
 
-
-/*        (song.getSongId() == 0)
-            ? songDao.insert(song)
-            .map((id) -> {
-              song.setSongId(id);
-              return song;
-            })
-            : songDao.update(song)
-                .map((numRecords) -> song)
-    )
-         .ignoreElement(); // Changes Single to Completable
-*/
-
+  LiveData<List<Song>> getSongByName(String songNameFragment) {
+    return songDao.getSongByName(String.format("%%%s%%", songNameFragment)); // %%%s%% used to create %...% for LIKE in SQL
+  }
 }
 

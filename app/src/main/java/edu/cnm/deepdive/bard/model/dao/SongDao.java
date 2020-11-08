@@ -44,12 +44,12 @@ public interface SongDao {
   @Query("SELECT * FROM Song WHERE song_id = :songId")
   LiveData<Song> getSongById(long songId);
 
-  @Query("SELECT * FROM Song ORDER BY song_name ASC")
-  LiveData<List<Song>> getSongByName();
+  @Query("SELECT * FROM Song WHERE song_name LIKE :songNameFragment ORDER BY song_name ASC")
+  LiveData<List<Song>> getSongByName(String songNameFragment);
 
-  @Query("SELECT * FROM Song ORDER BY artist ASC, song_name ASC")
-  LiveData<List<Song>> getSongByArtist();
+  @Query("SELECT * FROM Song WHERE artist LIKE :artistNameFragment ORDER BY song_name ASC")
+  LiveData<List<Song>> getSongByArtist(String artistNameFragment);
 
-  @Query("SELECT * FROM Song ORDER BY album ASC, song_name ASC")
-  LiveData<List<Song>> getSongByAlbum();
+  @Query("SELECT * FROM Song WHERE album LIKE :albumNameFragment ORDER BY album ASC, song_name ASC")
+  LiveData<List<Song>> getSongByAlbum(String albumNameFragment);
 }

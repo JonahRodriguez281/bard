@@ -23,7 +23,7 @@ public interface UserDao {
   Single<Integer> delete(User User);
 
   @Query("SELECT * FROM User WHERE user_id = :userId")
-  LiveData<User> getUser(long userId);
+  LiveData<User> selectUser(long userId);
 
   @Query("SELECT * FROM User WHERE oauth_key = :oauthKey")
   Maybe<User> selectByOauthKey(String oauthKey);
