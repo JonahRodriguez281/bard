@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
 import edu.cnm.deepdive.bard.model.pojo.TaskTypeWithTasks;
@@ -44,6 +45,7 @@ public interface TaskTypeDao {
 
 
   @Query("SELECT * FROM TaskType WHERE task_type_id = :taskTypeId")
+  @Transaction
   LiveData<TaskTypeWithTasks> getTaskTypeWithTasks(long taskTypeId);
 
   @Query("SELECT * FROM TaskType WHERE task_type_id = :taskTypeId")

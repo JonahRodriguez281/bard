@@ -18,10 +18,7 @@ import edu.cnm.deepdive.bard.service.BardDatabase.Converters;
 import java.util.Date;
 
 @Database(
-    entities = {Song.class, Task.class, TaskType.class, User.class},
-    version = 1,
-    exportSchema = true
-)
+    entities = {Song.class, Task.class, TaskType.class, User.class}, version = 1)
 @TypeConverters({Converters.class})
 public abstract class BardDatabase extends RoomDatabase {
 
@@ -36,6 +33,7 @@ public abstract class BardDatabase extends RoomDatabase {
   public static BardDatabase getInstance() {
     return InstanceHolder.INSTANCE;
   }
+
   public abstract SongDao getSongDao();
 
   public abstract TaskDao getTaskDao();

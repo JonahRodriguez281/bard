@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
@@ -44,9 +45,11 @@ public interface TaskDao {
 
 
   @Query("SELECT * FROM Task WHERE task_id = :taskId")
+  @Transaction
   LiveData<TaskWithType> getById(long taskId);
 
   @Query("SELECT * FROM Task WHERE task_name LIKE :taskNameFragment")
+  @Transaction
   LiveData<List<TaskWithType>> getByName(String taskNameFragment);
 
   @Query("SELECT * FROM Task WHERE spotify_playlist_key = :spotifyPlaylistKey")

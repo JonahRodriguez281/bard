@@ -3,10 +3,14 @@ package edu.cnm.deepdive.bard.service;
 import android.content.Context;
 import androidx.lifecycle.LiveData;
 import edu.cnm.deepdive.bard.model.dao.UserDao;
-import edu.cnm.deepdive.bard.model.entity.Song;
 import edu.cnm.deepdive.bard.model.entity.User;
 import io.reactivex.Completable;
 import io.reactivex.Maybe;
+import java.util.List;
+
+/* User repository will change and become more elaborate based on Spotify Sign-In Service
+incorporating bearer tokens and authorization. To be more modeled after Codebreaker User
+repository. */
 
 public class UserRepository {
 
@@ -32,11 +36,15 @@ public class UserRepository {
             .ignoreElement();
   }
 
-  LiveData<User> selectByUser(long userId) {
-    return userDao.selectUser(userId);
+  LiveData<User> selectById(long userId) {
+    return userDao.getById(userId);
+  }
+
+  LiveData<List<User>> selectByName(String accountName) {
+    return userDao.getByName(accountName);
   }
 
   Maybe<User> selectByOauthKey(String oauthKey) {
-    return userDao.selectByOauthKey(oauthKey);
+    return userDao.getByOauthKey(oauthKey);
   }
 }
