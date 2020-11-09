@@ -28,6 +28,8 @@ The user can choose to save the playlist that was created directly into their Sp
 
 ## [Entity Relationship Diagram](bard-erd.md)
 
+## [Data Definition Language](ddl.md)
+
 ## Persistent data
 
 * Saved & settable timers the user can determine for themselves.

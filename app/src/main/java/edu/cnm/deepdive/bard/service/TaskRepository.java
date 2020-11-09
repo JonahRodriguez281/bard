@@ -43,5 +43,8 @@ public class TaskRepository {
   LiveData<TaskWithType> getTask(long taskId) {
     return taskDao.getById(taskId);
   }
-  
+
+  LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey) {
+    return taskDao.getByPlaylistKey(spotifyPlaylistKey);
+  }
 }
