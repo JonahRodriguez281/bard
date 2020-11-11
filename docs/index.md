@@ -9,11 +9,10 @@ The user can choose to save the playlist that was created directly into their Sp
 
 ## Intended users
 
-* Coders, Students  and anyone doing intensive work.
+* Students
+    > As a busy student who loses track of time and gets stuck in my studies without taking breaks, I need an app to remind me to reset and take scheduled breaks to make sure I don't overwork myself, and keep my mind fresh.
 
-    > As a busy worker who loses track of time and gets stuck in my work without taking breaks, I need an app to remind me to reset and take scheduled break to make sure I don't overwork myself.
-
-* People who need musical accompaniment to stay focused.
+* People who need musical accompaniment to stay focused
 
     > As someone who often loses track of time and loses focus when working, I need an app that simultaneously reminds me to take breaks to reset my brain , so that I may keep on schedule and give myself breaks when needed when working or exercizing.
 
@@ -23,6 +22,7 @@ The user can choose to save the playlist that was created directly into their Sp
 * Connect to Spotify and sync your music library to accompany your work/study sessions.
 * Generate a playlist from your library either at random using your saved library, or from your personal playlists, that has the exact length of 25 minutes, notifying you of your break with a pause in the music.
 * Save the playlist that was generated to be able to use in the future.
+* Note that the application cannot function without access to the internet.
 
 ## [Wireframe](wireframe.md)
 
