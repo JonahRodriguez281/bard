@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.bard.controller.ui.gallery;
+package edu.cnm.deepdive.bard.controller.ui.music;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,17 +12,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.bard.R;
 
-public class GalleryFragment extends Fragment {
+public class MusicFragment extends Fragment {
 
-  private GalleryViewModel galleryViewModel;
+  private MusicViewModel musicViewModel;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
-    galleryViewModel =
-        ViewModelProviders.of(this).get(GalleryViewModel.class);
-    View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-    final TextView textView = root.findViewById(R.id.text_gallery);
-    galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+    musicViewModel =
+        ViewModelProviders.of(this).get(MusicViewModel.class);
+    View root = inflater.inflate(R.layout.fragment_music, container, false);
+    final TextView textView = root.findViewById(R.id.text_music);
+    musicViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override
       public void onChanged(@Nullable String s) {
         textView.setText(s);

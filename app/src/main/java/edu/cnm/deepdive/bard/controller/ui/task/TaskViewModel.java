@@ -1,16 +1,16 @@
-package edu.cnm.deepdive.bard.controller.ui.slideshow;
+package edu.cnm.deepdive.bard.controller.ui.task;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class TaskViewModel extends ViewModel {
 
   private MutableLiveData<String> mText;
 
-  public SlideshowViewModel() {
+  public TaskViewModel() {
     mText = new MutableLiveData<>();
-    mText.setValue("This is slideshow fragment");
+    mText.setValue("This is the task fragment");
   }
 
   public LiveData<String> getText() {

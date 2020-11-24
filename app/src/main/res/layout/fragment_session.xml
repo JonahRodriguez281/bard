@@ -5,10 +5,10 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".controller.ui.home.HomeFragment">
+  tools:context=".controller.ui.session.SessionFragment">
 
   <TextView
-    android:id="@+id/text_home"
+    android:id="@+id/text_session"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"

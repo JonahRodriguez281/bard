@@ -1,16 +1,16 @@
-package edu.cnm.deepdive.bard.controller.ui.gallery;
+package edu.cnm.deepdive.bard.controller.ui.music;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class MusicViewModel extends ViewModel {
 
   private MutableLiveData<String> mText;
 
-  public GalleryViewModel() {
+  public MusicViewModel() {
     mText = new MutableLiveData<>();
-    mText.setValue("This is gallery fragment");
+    mText.setValue("This is the music fragment");
   }
 
   public LiveData<String> getText() {
