@@ -4,24 +4,36 @@
   package="edu.cnm.deepdive.bard">
 
   <application
-    android:name=".BardApplication"
     android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
-    android:usesCleartextTraffic="true"
+    android:name=".BardApplication"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
+    android:usesCleartextTraffic="true"
     tools:ignore="AllowBackup">
-    <activity
-      android:label="@string/app_name"
-      android:name=".controller.NavigationActivity"
-      android:theme="@style/AppTheme.NoActionBar">
+    <activity android:name=".controller.LoginResponseActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+<!--        TODO get attribute values form resources-->
+        <data android:scheme="bard.deepdive.cnm.edu"
+          android:host="bard"
+          android:path="/oauth2callback"/>
+      </intent-filter>
+    </activity>
+    <activity android:name=".controller.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
+    </activity>
+    <activity
+      android:label="@string/app_name"
+      android:name=".controller.NavigationActivity"
+      android:theme="@style/AppTheme.NoActionBar">
     </activity>
   </application>
 

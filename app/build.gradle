@@ -19,6 +19,11 @@ android {
                 arguments = ['room.schemaLocation': "$projectDir/schemas".toString()]
             }
         }
+        // TODO populate resources and/or config fields w/ spotify.properties
+        manifestPlaceholders = [
+                // TODO get value from spotify.properties
+                'appAuthRedirectScheme': 'bard.deepdive.cnm.edu'
+        ]
     }
     buildTypes {
         release {
@@ -67,6 +72,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
+
+    implementation 'net.openid:appauth:0.7.1'
 
     // Stetho dependencies
     implementation 'com.facebook.stetho:stetho:1.5.1'
