@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import androidx.appcompat.app.AppCompatActivity;
-import edu.cnm.deepdive.bard.controller.LoginResponseActivity;
+import edu.cnm.deepdive.bard.R;
 import net.openid.appauth.AuthState;
 import net.openid.appauth.AuthorizationException;
 import net.openid.appauth.AuthorizationRequest;
@@ -17,21 +17,27 @@ import net.openid.appauth.ResponseTypeValues;
 
 public class SpotifySignInService {
 
+  @SuppressLint("StaticFieldLeak")
   private static Context context;
   private final AuthState authState;
   private final AuthorizationService service;
+  private final String clientId;
+  private final Uri redirectUri;
+  private final String authScope;
 
   private SpotifySignInService() {
     // TODO look for authState in shared preferences
-    // TODO get authenticationUri & tokenUri from buildConfig
     AuthorizationServiceConfiguration serviceConfiguration =
         new AuthorizationServiceConfiguration(
-            Uri.parse("https://accounts.spotify.com/authorize"),
-            Uri.parse("https://accounts.spotify.com/api/token")
+            Uri.parse(context.getString(R.string.authorization_endpoint_uri)),
+            Uri.parse(context.getString(R.string.token_endpoint_uri))
         );
     authState = new AuthState(serviceConfiguration);
+    // TODO Update shared preferences
     service = new AuthorizationService(context);
-
+    clientId = context.getString(R.string.client_id);
+    redirectUri = Uri.parse(context.getString(R.string.redirect_uri));
+    authScope = context.getString(R.string.authorization_scope);
   }
 
   public static void setContext(Context context) {
@@ -44,13 +50,11 @@ public class SpotifySignInService {
 
   public void startSignIn(int requestCode, Class<? extends AppCompatActivity> completedActivity,
       Class<? extends AppCompatActivity> canceledActivity) {
-    // TODO get clientId, callback from buildConfig
     //noinspection ConstantConditions
     AuthorizationRequest request = new AuthorizationRequest.Builder(
-        authState.getAuthorizationServiceConfiguration(), "691050584001403cb5dee03b43d0bd4f",
-        ResponseTypeValues.CODE, Uri.parse("bard.deepdive.cnm.edu://bard/oauth2callback")
-        )
-        .setScope("user-read-email user-library-read app-remote-control streaming playlist-modify-public playlist-modify-private playlist-read-private")
+        authState.getAuthorizationServiceConfiguration(), clientId,
+        ResponseTypeValues.CODE, redirectUri)
+        .setScope(authScope)
         .build();
     Intent completedIntent = new Intent(context, completedActivity)
         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -65,11 +69,13 @@ public class SpotifySignInService {
   public void completeSignIn(AuthorizationResponse response, AuthorizationException ex,
       Intent successIntent, Intent failureIntent) {
     authState.update(response, ex);
+    // TODO Update shared preferences
     if (response != null) {
       service.performTokenRequest(
           response.createTokenExchangeRequest(),
           (tokenResponse, authEx) -> {
             authState.update(tokenResponse, authEx);
+            // TODO Update shared preferences
             if (tokenResponse != null) {
               context.startActivity(successIntent);
             } else {
@@ -83,6 +89,7 @@ public class SpotifySignInService {
   }
 
   // TODO create refresh token method that returns a bearer token
+  // TODO method for the Login Activity to check if logged in already
 
   private static class InstanceHolder {
 
