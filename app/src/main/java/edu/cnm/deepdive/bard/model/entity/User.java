@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("NotNullFieldNotInitialized")
 @Entity(
@@ -24,6 +26,8 @@ public class User {
 
   @NonNull
   @ColumnInfo(name = "account_name", index = true)
+  @Expose
+  @SerializedName("id")
   private String accountName;
 
   public long getUserId() {

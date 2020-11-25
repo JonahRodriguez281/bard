@@ -1,8 +1,11 @@
 package edu.cnm.deepdive.bard.controller;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration.Builder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,6 +20,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.databinding.ActivityNavigationBinding;
+import edu.cnm.deepdive.bard.service.SpotifyServiceProxy;
+import edu.cnm.deepdive.bard.service.SpotifySignInService;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -24,6 +31,7 @@ public class NavigationActivity extends AppCompatActivity {
   private AppBarConfiguration appBarConfig;
   private NavController navController;
 
+  @SuppressLint("CheckResult")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -31,7 +39,15 @@ public class NavigationActivity extends AppCompatActivity {
     setContentView(binding.getRoot());
     setSupportActionBar(binding.appBarLayout.toolbar);
     setupNavigation();
-
+    //noinspection ResultOfMethodCallIgnored
+    SpotifySignInService.getInstance().refresh()
+        .observeOn(Schedulers.io())
+        .flatMap((token) -> SpotifyServiceProxy.getInstance().getProfile(token))
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(
+            (user) -> Log.d(getClass().getSimpleName(), user.getAccountName()),
+            (throwable) -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show()
+        );
  }
 
   private void setupNavigation() {

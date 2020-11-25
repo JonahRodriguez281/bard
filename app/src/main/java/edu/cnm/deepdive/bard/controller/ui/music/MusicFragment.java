@@ -9,25 +9,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import edu.cnm.deepdive.bard.R;
+import edu.cnm.deepdive.bard.databinding.FragmentMusicBinding;
 
 public class MusicFragment extends Fragment {
 
   private MusicViewModel musicViewModel;
+  private FragmentMusicBinding binding;
 
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
-    musicViewModel =
-        ViewModelProviders.of(this).get(MusicViewModel.class);
-    View root = inflater.inflate(R.layout.fragment_music, container, false);
-    final TextView textView = root.findViewById(R.id.text_music);
+    binding = FragmentMusicBinding.inflate(inflater);
+    musicViewModel = new ViewModelProvider(this).get(MusicViewModel.class);
     musicViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
       @Override
       public void onChanged(@Nullable String s) {
-        textView.setText(s);
+        binding.textMusic.setText(s);
       }
     });
-    return root;
+    return binding.getRoot();
   }
 }
