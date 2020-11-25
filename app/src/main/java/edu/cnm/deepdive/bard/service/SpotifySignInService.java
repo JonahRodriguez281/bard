@@ -48,21 +48,24 @@ public class SpotifySignInService {
     return InstanceHolder.INSTANCE;
   }
 
-  public void startSignIn(int requestCode, Class<? extends AppCompatActivity> completedActivity,
-      Class<? extends AppCompatActivity> canceledActivity) {
+  public void startSignIn(AppCompatActivity activity, int requestCode,
+      Class<? extends AppCompatActivity> completedActivity,
+      Class<? extends AppCompatActivity> cancelledActivity) {
     //noinspection ConstantConditions
     AuthorizationRequest request = new AuthorizationRequest.Builder(
         authState.getAuthorizationServiceConfiguration(), clientId,
         ResponseTypeValues.CODE, redirectUri)
         .setScope(authScope)
         .build();
-    Intent completedIntent = new Intent(context, completedActivity)
+    Intent completedIntent = new Intent(activity, completedActivity)
         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    Intent canceledIntent = new Intent(context, canceledActivity)
+    Intent cancelledIntent = new Intent(activity, cancelledActivity)
         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
     service.performAuthorizationRequest(request,
-        PendingIntent.getActivity(context, requestCode, completedIntent, 0),
-        PendingIntent.getActivity(context, requestCode, canceledIntent, 0)
+        PendingIntent.getActivity(activity, requestCode, completedIntent,
+            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK),
+        PendingIntent.getActivity(activity, requestCode, cancelledIntent,
+            Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
         );
   }
 

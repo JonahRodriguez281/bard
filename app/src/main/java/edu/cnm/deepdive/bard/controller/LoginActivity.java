@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     setContentView(binding.getRoot());
     binding.signIn.setOnClickListener((v) -> {
       SpotifySignInService service = SpotifySignInService.getInstance();
-      service.startSignIn(1000, LoginResponseActivity.class, getClass());
+      service.startSignIn(this,1000, LoginResponseActivity.class, getClass());
     });
   }
 }

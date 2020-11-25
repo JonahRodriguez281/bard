@@ -45,7 +45,7 @@ android {
         resValue "string", "redirect_uri_scheme", redirect_uri_scheme
         resValue "string", "redirect_uri_host", redirect_uri_host
         resValue "string", "redirect_uri_path", redirect_uri_path
-        resValue "string", "redirect_uri", "${redirect_uri_scheme}${redirect_uri_host}${redirect_uri_path}"
+        resValue "string", "redirect_uri", "${redirect_uri_scheme}://${redirect_uri_host}${redirect_uri_path}"
 
         manifestPlaceholders = [
                 'appAuthRedirectScheme': "$redirect_uri_scheme"
