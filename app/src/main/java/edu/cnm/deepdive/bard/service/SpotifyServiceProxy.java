@@ -4,8 +4,10 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.bard.BuildConfig;
+import edu.cnm.deepdive.bard.model.entity.Song;
 import edu.cnm.deepdive.bard.model.entity.User;
 import io.reactivex.Single;
+import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
@@ -19,6 +21,11 @@ public interface SpotifyServiceProxy {
 
   @GET("me")
   Single<User> getProfile(@Header("Authorization") String bearerToken);
+
+  @GET("me/tracks")
+  Single<List<Song>> getLibrary(@Header("Authorization") String bearerToken);
+
+
 
   static SpotifyServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;

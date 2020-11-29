@@ -1,7 +1,7 @@
 {
   "client_id": "691050584001403cb5dee03b43d0bd4f",
   "redirect_uri": "net.openid.bard:/oauth2redirect",
-  "authorization_scope": "user-read-email user-library-read app-remote-control streaming playlist-modify-public playlist-modify-private playlist-read-private ",
+  "authorization_scope": "user-read-email user-library-read app-remote-control user-modify-playback-state streaming playlist-modify-public playlist-modify-private playlist-read-private ",
   "authorization_endpoint_uri": "https://accounts.spotify.com/authorize",
   "token_endpoint_uri": "https://accounts.spotify.com/api/token",
   "user_info_endpoint_uri": "https://api.spotify.com/v1/me",
