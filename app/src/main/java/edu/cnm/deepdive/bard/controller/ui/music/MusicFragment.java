@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -22,13 +23,11 @@ public class MusicFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater,
       ViewGroup container, Bundle savedInstanceState) {
     binding = FragmentMusicBinding.inflate(inflater);
-    musicViewModel = new ViewModelProvider(this).get(MusicViewModel.class);
-    musicViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-      @Override
-      public void onChanged(@Nullable String s) {
-        binding.textMusic.setText(s);
-      }
-    });
     return binding.getRoot();
+  }
+
+  public void setupViewModel() {
+    FragmentActivity activity = getActivity();
+
   }
 }

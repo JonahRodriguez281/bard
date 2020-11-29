@@ -7,6 +7,17 @@
   android:layout_height="match_parent"
   tools:context=".controller.ui.music.MusicFragment">
 
+  <androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/song_list"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:orientation="vertical"
+    android:padding="@dimen/half_static_spacing"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+
   <TextView
     android:id="@+id/text_music"
     android:layout_width="match_parent"

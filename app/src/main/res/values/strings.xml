@@ -10,4 +10,8 @@
   <string name="menu_session">Session</string>
   <string name="menu_tasks">Tasks</string>
   <string name="menu_music">Music</string>
+  <string name="add_task">Add Task</string>
+  <string name="task_name">Task Name</string>
+  <string name="task_description">Task Description</string>
+  <string name="new_task_condensed">Add</string>
 </resources>
