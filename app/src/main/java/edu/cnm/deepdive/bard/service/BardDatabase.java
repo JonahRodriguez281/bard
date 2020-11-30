@@ -62,16 +62,15 @@ public abstract class BardDatabase extends RoomDatabase {
     @Override
     public void onCreate(@NonNull @NotNull SupportSQLiteDatabase db) {
       super.onCreate(db);
-      List<Task> tasks = new LinkedList<>();
-      for (String name : new String[] {"Task A", "Task B", "Task C"}) {
-        Task task = new Task();
-        task.setTaskName(name);
-        task.setDescription(name);
-        task.setStart(new Date());
-        task.setDuration(10);
-        tasks.add(task);
+      List<TaskType> taskTypes = new LinkedList<>();
+      for (String name : new String[] {"TaskType A", "TaskType B", "TaskType C"}) {
+        TaskType taskType = new TaskType();
+        taskType.setName(name);
+        taskType.setDescription(name);
+        taskType.setDuration(10);
+        taskTypes.add(taskType);
       }
-      BardDatabase.getInstance().getTaskDao().insert(tasks)
+      BardDatabase.getInstance().getTaskTypeDao().insert(taskTypes)
           .subscribeOn(Schedulers.io())
           .subscribe(
               (ids) -> {},

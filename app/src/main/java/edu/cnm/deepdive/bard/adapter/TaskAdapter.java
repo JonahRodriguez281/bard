@@ -5,33 +5,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
 import edu.cnm.deepdive.bard.R;
-import edu.cnm.deepdive.bard.databinding.ItemTaskBinding;
+import edu.cnm.deepdive.bard.databinding.ItemCurrentTaskBinding;
 import edu.cnm.deepdive.bard.model.entity.Task;
+import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import java.util.ArrayList;
+import java.util.List;
 
-public class TaskAdapter extends ArrayAdapter<Task> {
+public class TaskAdapter extends ArrayAdapter<TaskWithType> {
 
   private final LayoutInflater inflater;
+  private final List<TaskWithType> currentTasks;
 
-  public TaskAdapter(@NonNull Context context, int resource) {
-    super(context, R.layout.item_task, new ArrayList<Task>());
+  public TaskAdapter(@NonNull Context context, List<TaskWithType> currentTasks) {
+    super(context, R.layout.item_current_task, currentTasks);
     inflater = LayoutInflater.from(context);
+    this.currentTasks = currentTasks;
   }
 
   @NonNull
   @Override
   public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-    ItemTaskBinding binding = (convertView != null)
-        ? ItemTaskBinding.bind(convertView)
-        : ItemTaskBinding.inflate(inflater, parent, false);
+    ItemCurrentTaskBinding binding = (convertView != null)
+        ? ItemCurrentTaskBinding.bind(convertView)
+        : ItemCurrentTaskBinding.inflate(inflater, parent, false);
     Task task = getItem(position);
-    binding.taskName.setText(task.getTaskName());
-    binding.taskDescription.setText(task.getDescription());
-    binding.taskDuration.setText(Integer.toString(task.getDuration()));
+    binding.currentTaskName.setText(task.getTaskName());
+    binding.currentTaskDescription.setText(task.getDescription());
+    binding.currentTaskDuration.setText(Integer.toString(task.getDuration()));
     return binding.getRoot();
   }
 }

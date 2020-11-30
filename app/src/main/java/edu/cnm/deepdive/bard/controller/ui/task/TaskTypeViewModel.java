@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.bard.controller.ui.task;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
@@ -11,30 +12,61 @@ import androidx.lifecycle.ViewModel;
 import androidx.preference.PreferenceManager;
 import edu.cnm.deepdive.bard.model.entity.Song;
 import edu.cnm.deepdive.bard.model.entity.Task;
+import edu.cnm.deepdive.bard.model.entity.TaskType;
 import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import edu.cnm.deepdive.bard.service.SongRepository;
 import edu.cnm.deepdive.bard.service.TaskRepository;
 import java.util.List;
 
-public class TaskViewModel extends AndroidViewModel implements LifecycleObserver {
+public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final TaskRepository taskRepository;
   private final SharedPreferences preferences;
   private final MutableLiveData<Task> task;
+  private final MutableLiveData<Throwable> throwable;
 
-  public TaskViewModel(@NonNull Application application) {
+  public TaskTypeViewModel(@NonNull Application application) {
     super(application);
     taskRepository = new TaskRepository(application);
     preferences = PreferenceManager.getDefaultSharedPreferences(application);
     task = new MutableLiveData<>();
+    throwable = new MutableLiveData<>();
+  }
+
+  public void save(Task task) {
+
+  }
+
+  @SuppressLint("CheckResult")
+  public void delete(TaskType taskType) {
+    throwable.setValue(null);
+    taskRepository.delete(taskType)
+        .subscribe(
+            () -> {},
+            throwable::postValue
+        );
+  }
+
+  @SuppressLint("CheckResult")
+  public void create(TaskType taskType) {
+    throwable.setValue(null);
+    taskRepository.create(taskType)
+        .subscribe(
+            () -> {},
+            throwable::postValue
+        );
+
   }
 
   public LiveData<Task> getTask() {
     return task;
   }
 
-  public LiveData<List<TaskWithType>> getTasks() {
-    return taskRepository.getAll();
+  public LiveData<List<TaskType>> getTaskTypes() {
+    return taskRepository.getTaskTypes();
   }
 
+  public LiveData<Throwable> getThrowable() {
+    return throwable;
+  }
 }

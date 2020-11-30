@@ -46,7 +46,7 @@ public class SongAdapter extends RecyclerView.Adapter {
 
   class Holder extends RecyclerView.ViewHolder {
 
-    public Holder(@NonNull @NotNull View itemView) {
+    public Holder(@NonNull View itemView) {
       super(itemView);
     }
   }

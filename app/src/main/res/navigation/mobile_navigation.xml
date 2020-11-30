@@ -9,13 +9,18 @@
     android:id="@+id/nav_session"
     android:label="@string/menu_session"
     android:name="edu.cnm.deepdive.bard.controller.ui.session.SessionFragment"
-    tools:layout="@layout/fragment_session"/>
+    tools:layout="@layout/fragment_session">
+    <action
+      android:id="@+id/action_nav_session_to_nav_task"
+      app:destination="@id/nav_task"
+      app:popUpTo="@id/nav_session"/>
+  </fragment>
 
   <fragment
     android:id="@+id/nav_task"
     android:label="@string/menu_tasks"
-    android:name="edu.cnm.deepdive.bard.controller.ui.task.TaskFragment"
-    tools:layout="@layout/fragment_task"/>
+    android:name="edu.cnm.deepdive.bard.controller.ui.task.TaskTypeFragment"
+    tools:layout="@layout/fragment_task_type"/>
 
   <fragment
     android:id="@+id/nav_music"

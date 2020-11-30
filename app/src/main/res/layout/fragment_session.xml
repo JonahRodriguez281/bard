@@ -7,13 +7,55 @@
   android:layout_height="match_parent"
   tools:context=".controller.ui.session.SessionFragment">
 
-<!--  TODO explore ListView vs. RecyclerView-->
+  <TextView
+    android:id="@+id/task_name_header"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/task_name"
+    style="@style/Task.Header"
+    app:layout_constraintHorizontal_weight="4"
+    app:layout_constraintBottom_toBottomOf="@id/task_duration_header"
+    app:layout_constraintEnd_toStartOf="@id/task_description_header"
+    app:layout_constraintStart_toStartOf="parent"/>
+
+  <TextView
+    android:id="@+id/task_description_header"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/task_description"
+    style="@style/Task.Header"
+    app:layout_constraintHorizontal_weight="4"
+    app:layout_constraintBottom_toBottomOf="@id/task_duration_header"
+    app:layout_constraintEnd_toStartOf="@id/task_duration_header"
+    app:layout_constraintStart_toEndOf="@id/task_name_header"/>
+
+  <TextView
+    android:id="@+id/task_duration_header"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/task_duration"
+    style="@style/Task.Header"
+    app:layout_constraintHorizontal_weight="2"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/task_description_header"/>
+
+  <androidx.constraintlayout.widget.Barrier
+    android:id="@+id/header_baseline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:barrierDirection="bottom"
+    app:constraint_referenced_ids="task_name_header, task_description_header, task_duration_header"/>
+
   <ListView
     android:id="@+id/current_task_list"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:padding="@dimen/half_static_spacing"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/header_baseline"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
 

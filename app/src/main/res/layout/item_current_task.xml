@@ -9,36 +9,36 @@
   android:padding="@dimen/half_margin">
 
   <TextView
-    android:id="@+id/task_name"
+    android:id="@+id/current_task_name"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/half_static_spacing"
     app:layout_constraintHorizontal_weight="4"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintEnd_toStartOf="@id/task_description"
+    app:layout_constraintEnd_toStartOf="@id/current_task_description"
     style="@style/Task"
     tools:text="Wash Dishes"/>
 
   <TextView
-    android:id="@+id/task_description"
+    android:id="@+id/current_task_description"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/half_static_spacing"
-    app:layout_constraintBaseline_toBaselineOf="@id/task_name"
-    app:layout_constraintStart_toEndOf="@id/task_name"
-    app:layout_constraintEnd_toStartOf="@id/task_duration"
+    app:layout_constraintBaseline_toBaselineOf="@id/current_task_name"
+    app:layout_constraintStart_toEndOf="@id/current_task_name"
+    app:layout_constraintEnd_toStartOf="@id/current_task_duration"
     app:layout_constraintHorizontal_weight="4"
     style="@style/Task"
     tools:text="Wash dishes in kitchen"/>
 
   <TextView
-    android:id="@+id/task_duration"
+    android:id="@+id/current_task_duration"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/half_static_spacing"
-    app:layout_constraintBaseline_toBaselineOf="@id/task_name"
-    app:layout_constraintStart_toEndOf="@id/task_description"
+    app:layout_constraintBaseline_toBaselineOf="@id/current_task_name"
+    app:layout_constraintStart_toEndOf="@id/current_task_description"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_weight="2"
     style="@style/Task.Duration"
@@ -49,35 +49,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:barrierDirection="bottom"
-    app:constraint_referenced_ids="task_name, task_description, task_duration"/>
-
-  <ImageButton
-    android:id="@+id/edit_task"
-    android:layout_width="24dp"
-    android:layout_height="24dp"
-    android:layout_margin="@dimen/half_margin"
-    android:src="@drawable/ic_edit"
-    app:layout_constraintEnd_toStartOf="@id/add_task"
-    app:layout_constraintTop_toBottomOf="@id/horizontal_barrier"/>
-
-  <ImageButton
-    android:id="@+id/add_task"
-    android:layout_width="24dp"
-    android:layout_height="24dp"
-    android:tint="#00FF00"
-    android:layout_margin="@dimen/half_margin"
-    android:src="@drawable/ic_plus"
-    app:layout_constraintEnd_toStartOf="@id/delete_task"
-    app:layout_constraintTop_toBottomOf="@id/horizontal_barrier"/>
-
-  <ImageButton
-    android:id="@+id/delete_task"
-    android:layout_width="24dp"
-    android:layout_height="24dp"
-    android:layout_margin="@dimen/half_margin"
-    android:src="@drawable/ic_delete"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/horizontal_barrier"/>
-
+    app:constraint_referenced_ids="current_task_name, current_task_description, current_task_duration"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

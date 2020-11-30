@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import androidx.annotation.Nullable;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import com.google.gson.Gson;
@@ -135,7 +135,6 @@ public class SpotifySignInService {
 
     );
   }
-
 
   private static class InstanceHolder {
 

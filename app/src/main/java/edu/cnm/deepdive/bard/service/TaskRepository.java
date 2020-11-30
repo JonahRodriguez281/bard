@@ -5,8 +5,12 @@ import androidx.lifecycle.LiveData;
 import edu.cnm.deepdive.bard.model.dao.TaskDao;
 import edu.cnm.deepdive.bard.model.dao.TaskTypeDao;
 import edu.cnm.deepdive.bard.model.entity.Task;
+import edu.cnm.deepdive.bard.model.entity.TaskType;
 import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import io.reactivex.Completable;
+import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
+import java.util.Date;
 import java.util.List;
 
 public class TaskRepository {
@@ -27,14 +31,46 @@ public class TaskRepository {
         .doAfterSuccess(task::setTaskId)
         .ignoreElement()
         : taskDao.update(task)
-            .ignoreElement();
+            .ignoreElement()
+        .subscribeOn(Schedulers.io());
   }
+
+  public Completable create(TaskType taskType) {
+    return Single.fromCallable(() -> {
+      Task task = new Task();
+      task.setTaskTypeId(taskType.getTaskTypeId());
+      task.setTaskName(taskType.getName());
+      task.setDescription(taskType.getDescription());
+      task.setDuration(taskType.getDuration());
+      task.setStart(new Date());
+      return task;
+    })
+        .flatMap(task -> taskDao.insert(task)
+            .map((id) -> {
+              task.setTaskId(id);
+              return task;
+            })
+        )
+        .ignoreElement()
+        .subscribeOn(Schedulers.io());
+  }
+
   public Completable delete(Task task) {
     return (task.getTaskId() == 0)
         ? Completable.complete()
         : taskDao.delete(task)
-            .ignoreElement();
+            .ignoreElement()
+        .subscribeOn(Schedulers.io());
   }
+
+  public Completable delete(TaskType taskType) {
+    return (taskType.getTaskTypeId() == 0)
+        ? Completable.complete()
+        : taskTypeDao.delete(taskType)
+            .ignoreElement()
+        .subscribeOn(Schedulers.io());
+  }
+
 
   public LiveData<List<TaskWithType>> searchTasks(String taskNameFragment) {
     return taskDao.getByName(String.format("%%%s%%", taskNameFragment)); // %...% for LIKE in SQL
@@ -50,5 +86,9 @@ public class TaskRepository {
 
   public LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey) {
     return taskDao.getByPlaylistKey(spotifyPlaylistKey);
+  }
+
+  public LiveData<List<TaskType>> getTaskTypes() {
+    return taskTypeDao.getAll();
   }
 }

@@ -50,4 +50,7 @@ public interface TaskTypeDao {
 
   @Query("SELECT * FROM TaskType WHERE task_type_id = :taskTypeId")
   LiveData<TaskType> select(long taskTypeId);
+
+  @Query("SELECT * FROM TaskType ORDER BY name ASC")
+  LiveData<List<TaskType>> getAll();
 }

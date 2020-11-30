@@ -15,17 +15,17 @@ import org.jetbrains.annotations.NotNull;
 public class SessionTaskAdapter extends RecyclerView.Adapter<Holder> {
 
   private final Context context;
-  private final List<Task> tasks;
+  private final List<Task> currentTasks;
   private final LayoutInflater inflater;
 
   public SessionTaskAdapter(@NonNull Context context) {
     this.context = context;
-    tasks = new ArrayList<>();
+    currentTasks = new ArrayList<>();
     inflater = LayoutInflater.from(context);
   }
 
-  public List<Task> getTasks() {
-    return tasks;
+  public List<Task> getCurrentTasks() {
+    return currentTasks;
   }
 
   @NotNull
@@ -42,7 +42,7 @@ public class SessionTaskAdapter extends RecyclerView.Adapter<Holder> {
 
   @Override
   public int getItemCount() {
-    return tasks.size();
+    return currentTasks.size();
   }
 
   class Holder extends RecyclerView.ViewHolder {
@@ -55,7 +55,7 @@ public class SessionTaskAdapter extends RecyclerView.Adapter<Holder> {
     }
 
     private void bind(int position) {
-      Task task = tasks.get(position);
+      Task task = currentTasks.get(position);
       binding.taskName.setText(task.getTaskName());
       binding.taskDescription.setText(task.getDescription());
       binding.taskDuration.setText(task.getDuration());
