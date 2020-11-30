@@ -52,6 +52,10 @@ public interface TaskDao {
   @Transaction
   LiveData<List<TaskWithType>> getByName(String taskNameFragment);
 
+  @Query("SELECT * FROM Task ORDER BY task_name ASC")
+  @Transaction
+  LiveData<List<TaskWithType>> getAll();
+
   @Query("SELECT * FROM Task WHERE spotify_playlist_key = :spotifyPlaylistKey")
   LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey);
   }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "974e8695247684c0ed99ed199c7f1513",
+    "identityHash": "6780880e94419d263d79b1357feb3880",
     "entities": [
       {
         "tableName": "Song",
@@ -87,7 +87,7 @@
       },
       {
         "tableName": "Task",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`task_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `task_name` TEXT NOT NULL, `description` TEXT NOT NULL, `duration` INTEGER NOT NULL, `start` INTEGER NOT NULL, `end` INTEGER NOT NULL, `break` INTEGER NOT NULL, `spotify_playlist_key` TEXT, `user_id` INTEGER NOT NULL, `task_type_id` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`task_type_id`) REFERENCES `TaskType`(`task_type_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`task_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `task_name` TEXT NOT NULL, `description` TEXT NOT NULL, `duration` INTEGER NOT NULL, `start` INTEGER NOT NULL, `end` INTEGER, `break` INTEGER NOT NULL, `spotify_playlist_key` TEXT, `user_id` INTEGER, `task_type_id` INTEGER, FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`task_type_id`) REFERENCES `TaskType`(`task_type_id`) ON UPDATE NO ACTION ON DELETE SET NULL )",
         "fields": [
           {
             "fieldPath": "taskId",
@@ -123,7 +123,7 @@
             "fieldPath": "end",
             "columnName": "end",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "breakLength",
@@ -141,13 +141,13 @@
             "fieldPath": "userId",
             "columnName": "user_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "taskTypeId",
             "columnName": "task_type_id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -212,7 +212,7 @@
           },
           {
             "table": "TaskType",
-            "onDelete": "CASCADE",
+            "onDelete": "SET NULL",
             "onUpdate": "NO ACTION",
             "columns": [
               "task_type_id"
@@ -323,7 +323,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '974e8695247684c0ed99ed199c7f1513')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6780880e94419d263d79b1357feb3880')"
     ]
   }
 }

@@ -1,11 +1,14 @@
 package edu.cnm.deepdive.bard.service;
 
 import android.app.Application;
+import android.util.Log;
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 import edu.cnm.deepdive.bard.model.dao.SongDao;
 import edu.cnm.deepdive.bard.model.dao.TaskDao;
 import edu.cnm.deepdive.bard.model.dao.TaskTypeDao;
@@ -15,7 +18,11 @@ import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
 import edu.cnm.deepdive.bard.model.entity.User;
 import edu.cnm.deepdive.bard.service.BardDatabase.Converters;
+import io.reactivex.schedulers.Schedulers;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 @Database(
     entities = {Song.class, Task.class, TaskType.class, User.class}, version = 1)
@@ -46,7 +53,31 @@ public abstract class BardDatabase extends RoomDatabase {
 
     private static final BardDatabase INSTANCE =
         Room.databaseBuilder(context, BardDatabase.class, DB_NAME)
+            .addCallback(new Callback())
             .build();
+  }
+
+  private static class Callback extends RoomDatabase.Callback {
+
+    @Override
+    public void onCreate(@NonNull @NotNull SupportSQLiteDatabase db) {
+      super.onCreate(db);
+      List<Task> tasks = new LinkedList<>();
+      for (String name : new String[] {"Task A", "Task B", "Task C"}) {
+        Task task = new Task();
+        task.setTaskName(name);
+        task.setDescription(name);
+        task.setStart(new Date());
+        task.setDuration(10);
+        tasks.add(task);
+      }
+      BardDatabase.getInstance().getTaskDao().insert(tasks)
+          .subscribeOn(Schedulers.io())
+          .subscribe(
+              (ids) -> {},
+              (throwable) -> Log.e(getClass().getSimpleName(), throwable.getMessage(), throwable)
+          );
+    }
   }
 
   public static class Converters {

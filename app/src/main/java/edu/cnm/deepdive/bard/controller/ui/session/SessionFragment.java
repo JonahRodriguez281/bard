@@ -28,7 +28,7 @@ public class SessionFragment extends Fragment {
     FragmentActivity activity = getActivity();
     //noinspection ConstantConditions
     adapter = new SessionTaskAdapter(activity);
-    binding.currentTaskList.setAdapter(adapter);
+//    binding.currentTaskList.setAdapter(adapter);
     sessionViewModel = new ViewModelProvider(activity).get(SessionViewModel.class);
     getLifecycle().addObserver(sessionViewModel);
   }

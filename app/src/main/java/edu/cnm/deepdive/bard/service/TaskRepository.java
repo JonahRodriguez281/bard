@@ -36,15 +36,19 @@ public class TaskRepository {
             .ignoreElement();
   }
 
-  LiveData<List<TaskWithType>> searchTasks(String taskNameFragment) {
+  public LiveData<List<TaskWithType>> searchTasks(String taskNameFragment) {
     return taskDao.getByName(String.format("%%%s%%", taskNameFragment)); // %...% for LIKE in SQL
   }
 
-  LiveData<TaskWithType> getTask(long taskId) {
+  public LiveData<List<TaskWithType>> getAll() {
+    return taskDao.getAll();
+  }
+
+  public LiveData<TaskWithType> getTask(long taskId) {
     return taskDao.getById(taskId);
   }
 
-  LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey) {
+  public LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey) {
     return taskDao.getByPlaylistKey(spotifyPlaylistKey);
   }
 }

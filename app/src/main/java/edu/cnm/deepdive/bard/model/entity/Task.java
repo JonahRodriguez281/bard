@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.bard.model.entity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -21,7 +22,7 @@ import java.util.Date;
             entity = TaskType.class,
             childColumns = "task_type_id",
             parentColumns = "task_type_id",
-            onDelete = ForeignKey.CASCADE
+            onDelete = ForeignKey.SET_NULL
         )
     }
 )
@@ -44,7 +45,6 @@ public class Task {
   @ColumnInfo(index = true)
   private Date start;
 
-  @NonNull
   @ColumnInfo(index = true)
   private Date end;
 
@@ -55,10 +55,10 @@ public class Task {
   private String playlistKey;
 
   @ColumnInfo(name = "user_id", index = true)
-  private long userId;
+  private Long userId;
 
   @ColumnInfo(name = "task_type_id", index = true)
-  private long taskTypeId;
+  private Long taskTypeId;
 
   public long getTaskId() {
     return taskId;
@@ -103,12 +103,11 @@ public class Task {
     this.start = start;
   }
 
-  @NonNull
   public Date getEnd() {
     return end;
   }
 
-  public void setEnd(@NonNull Date end) {
+  public void setEnd(Date end) {
     this.end = end;
   }
 
@@ -128,19 +127,27 @@ public class Task {
     this.playlistKey = playlistKey;
   }
 
-  public long getUserId() {
+  public Long getUserId() {
     return userId;
   }
 
-  public void setUserId(long userId) {
+  public void setUserId(Long userId) {
     this.userId = userId;
   }
 
-  public long getTaskTypeId() {
+  public Long getTaskTypeId() {
     return taskTypeId;
   }
 
-  public void setTaskTypeId(long taskTypeId) {
+  public void setTaskTypeId(Long taskTypeId) {
     this.taskTypeId = taskTypeId;
   }
+
+  @NonNull
+  @Override
+  public String toString() {
+    return taskName;
+  }
+
+
 }
