@@ -45,7 +45,9 @@ public class SessionFragment extends Fragment {
     getLifecycle().addObserver(sessionViewModel);
     sessionViewModel.getTasks().observe(getViewLifecycleOwner(), (tasks) -> {
       //noinspection ConstantConditions
-      TaskAdapter adapter = new TaskAdapter(activity, tasks);
+      TaskAdapter adapter = new TaskAdapter(
+          activity, tasks,
+          sessionViewModel::delete);
       binding.currentTaskList.setAdapter(adapter);
     });
     sessionViewModel.getThrowable().observe(getViewLifecycleOwner(), (throwable) -> {

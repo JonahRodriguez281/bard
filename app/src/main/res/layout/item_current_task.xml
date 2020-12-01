@@ -51,4 +51,13 @@
     app:barrierDirection="bottom"
     app:constraint_referenced_ids="current_task_name, current_task_description, current_task_duration"/>
 
+  <ImageButton
+    android:id="@+id/delete_current_task"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:layout_margin="@dimen/half_margin"
+    android:src="@drawable/ic_delete"
+    app:layout_constraintTop_toBottomOf="@id/horizontal_barrier"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

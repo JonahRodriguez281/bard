@@ -64,9 +64,9 @@
     android:id="@+id/add_task"
     android:layout_width="24dp"
     android:layout_height="24dp"
-    android:tint="#00FF00"
     android:layout_margin="@dimen/half_margin"
     android:src="@drawable/ic_plus"
+    android:tint="#00FF00"
     app:layout_constraintEnd_toStartOf="@id/delete_task"
     app:layout_constraintTop_toBottomOf="@id/horizontal_barrier"/>
 

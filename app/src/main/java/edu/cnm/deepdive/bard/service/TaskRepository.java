@@ -25,14 +25,12 @@ public class TaskRepository {
     taskTypeDao = BardDatabase.getInstance().getTaskTypeDao();
   }
 
-  public Completable save(Task task) {
-    return (task.getTaskId() == 0)
-        ? taskDao.insert(task)
-        .doAfterSuccess(task::setTaskId)
-        .ignoreElement()
-        : taskDao.update(task)
+  public Completable update(TaskType taskType) {
+    return (taskType.getTaskTypeId() == 0)
+        ? Completable.complete()
+        : taskTypeDao.delete(taskType)
             .ignoreElement()
-        .subscribeOn(Schedulers.io());
+            .subscribeOn(Schedulers.io());
   }
 
   public Completable create(TaskType taskType) {

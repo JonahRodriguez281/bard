@@ -1,9 +1,11 @@
 package edu.cnm.deepdive.bard.controller.ui.task;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.adapter.TaskAdapter;
 import edu.cnm.deepdive.bard.adapter.TaskTypeAdapter;
 import edu.cnm.deepdive.bard.databinding.FragmentTaskTypeBinding;
@@ -26,6 +30,9 @@ public class TaskTypeFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentTaskTypeBinding.inflate(getLayoutInflater());
+    binding.addTaskTypeFab.setOnClickListener((v) -> {
+      // TODO Show CreateTaskTypePropertiesFragment.
+    });
     binding.taskList.setOnItemClickListener((parent, view, position, id) -> {
       Task task = (Task) parent.getItemAtPosition(position);
       Toast.makeText(getContext(), task.getTaskName(), Toast.LENGTH_LONG).show();
@@ -47,8 +54,7 @@ public class TaskTypeFragment extends Fragment {
       //noinspection ConstantConditions
       TaskTypeAdapter adapter = new TaskTypeAdapter(
           activity, taskTypes,
-          (taskType) -> Log.d(
-              getClass().getSimpleName(), String.format("Editing %d", taskType.getTaskTypeId())),
+          taskTypeViewModel::update,
           taskTypeViewModel::create,
           taskTypeViewModel::delete
       );
@@ -60,5 +66,11 @@ public class TaskTypeFragment extends Fragment {
           }
         }
     );
+  }
+
+  @Override
+  public void onActivityResult(int requestCode, int resultCode,
+      @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
   }
 }

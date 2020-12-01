@@ -16,6 +16,7 @@ import edu.cnm.deepdive.bard.model.entity.TaskType;
 import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import edu.cnm.deepdive.bard.service.SongRepository;
 import edu.cnm.deepdive.bard.service.TaskRepository;
+import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 
 public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObserver {
@@ -24,6 +25,7 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
   private final SharedPreferences preferences;
   private final MutableLiveData<Task> task;
   private final MutableLiveData<Throwable> throwable;
+  private final CompositeDisposable pending;
 
   public TaskTypeViewModel(@NonNull Application application) {
     super(application);
@@ -31,30 +33,46 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
     preferences = PreferenceManager.getDefaultSharedPreferences(application);
     task = new MutableLiveData<>();
     throwable = new MutableLiveData<>();
+    pending = new CompositeDisposable();
   }
 
-  public void save(Task task) {
-
+  @SuppressLint("CheckResult")
+  public void update(TaskType taskType) {
+    throwable.setValue(null);
+    pending.add(
+        taskRepository.update(taskType)
+            .subscribe(
+                () -> {
+                },
+                throwable::postValue
+            )
+    );
   }
 
   @SuppressLint("CheckResult")
   public void delete(TaskType taskType) {
     throwable.setValue(null);
-    taskRepository.delete(taskType)
-        .subscribe(
-            () -> {},
-            throwable::postValue
-        );
+    pending.add(
+        taskRepository.delete(taskType)
+            .subscribe(
+                () -> {
+                },
+                throwable::postValue
+            )
+    );
   }
 
   @SuppressLint("CheckResult")
   public void create(TaskType taskType) {
     throwable.setValue(null);
-    taskRepository.create(taskType)
-        .subscribe(
-            () -> {},
-            throwable::postValue
-        );
+    pending.add(
+        taskRepository.create(taskType)
+            .subscribe(
+                () -> {
+                },
+                throwable::postValue
+            )
+    );
 
   }
 

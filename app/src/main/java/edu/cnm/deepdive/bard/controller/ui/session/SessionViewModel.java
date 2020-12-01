@@ -13,6 +13,7 @@ import edu.cnm.deepdive.bard.model.entity.Song;
 import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import edu.cnm.deepdive.bard.service.TaskRepository;
+import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 
 public class SessionViewModel extends AndroidViewModel implements LifecycleObserver {
@@ -22,6 +23,7 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
   private final MutableLiveData<Task> task;
   private final MutableLiveData<Song> song;
   private final MutableLiveData<Throwable> throwable;
+  private final CompositeDisposable pending;
 
   public SessionViewModel(@NonNull Application application) {
     super(application);
@@ -30,16 +32,20 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
     task = new MutableLiveData<>();
     song = new MutableLiveData<>();
     throwable = new MutableLiveData<>();
+    pending = new CompositeDisposable();
   }
 
   @SuppressLint("CheckResult")
   public void delete(Task task) {
     throwable.setValue(null);
-    taskRepository.delete(task)
-        .subscribe(
-            () -> {},
-            throwable::postValue
-        );
+    pending.add(
+        taskRepository.delete(task)
+            .subscribe(
+                () -> {
+                },
+                throwable::postValue
+            )
+    );
   }
 
   public LiveData<List<TaskWithType>> getTasks() {
