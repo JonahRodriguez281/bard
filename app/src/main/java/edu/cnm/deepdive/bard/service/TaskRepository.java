@@ -28,7 +28,7 @@ public class TaskRepository {
   public Completable update(TaskType taskType) {
     return (taskType.getTaskTypeId() == 0)
         ? Completable.complete()
-        : taskTypeDao.delete(taskType)
+        : taskTypeDao.update(taskType)
             .ignoreElement()
             .subscribeOn(Schedulers.io());
   }

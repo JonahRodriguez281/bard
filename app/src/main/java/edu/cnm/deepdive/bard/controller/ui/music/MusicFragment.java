@@ -17,6 +17,7 @@ import edu.cnm.deepdive.bard.databinding.FragmentMusicBinding;
 
 public class MusicFragment extends Fragment {
 
+  // TODO Implement data gathered from Spotify Endpoints
   private MusicViewModel musicViewModel;
   private FragmentMusicBinding binding;
 

@@ -22,6 +22,7 @@ public interface SpotifyServiceProxy {
   @GET("me")
   Single<User> getProfile(@Header("Authorization") String bearerToken);
 
+  // TODO Finish Writing all Endpoints for service
   @GET("me/tracks")
   Single<List<Song>> getLibrary(@Header("Authorization") String bearerToken);
 
