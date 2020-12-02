@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.preference.PreferenceManager;
 import edu.cnm.deepdive.bard.model.entity.Song;
@@ -25,6 +26,8 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
   private final SharedPreferences preferences;
   private final MutableLiveData<Task> task;
   private final MutableLiveData<Throwable> throwable;
+  private final LiveData<TaskType> taskType;
+  private final MutableLiveData<Long> taskTypeId;
   private final CompositeDisposable pending;
 
   public TaskTypeViewModel(@NonNull Application application) {
@@ -32,6 +35,8 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
     taskRepository = new TaskRepository(application);
     preferences = PreferenceManager.getDefaultSharedPreferences(application);
     task = new MutableLiveData<>();
+    taskTypeId = new MutableLiveData<>();
+    taskType = Transformations.switchMap(taskTypeId, taskRepository::getTaskType);
     throwable = new MutableLiveData<>();
     pending = new CompositeDisposable();
   }
@@ -82,6 +87,14 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
 
   public LiveData<List<TaskType>> getTaskTypes() {
     return taskRepository.getTaskTypes();
+  }
+
+  public LiveData<TaskType> getTaskType() {
+    return taskType;
+  }
+
+  public void setTaskTypeId(long id) {
+    taskTypeId.setValue(id);
   }
 
   public LiveData<Throwable> getThrowable() {

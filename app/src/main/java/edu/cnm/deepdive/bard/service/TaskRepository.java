@@ -26,11 +26,13 @@ public class TaskRepository {
   }
 
   public Completable update(TaskType taskType) {
-    return (taskType.getTaskTypeId() == 0)
-        ? Completable.complete()
-        : taskTypeDao.update(taskType)
-            .ignoreElement()
-            .subscribeOn(Schedulers.io());
+    return (
+        (taskType.getTaskTypeId() == 0)
+            ? taskTypeDao.insert(taskType)
+            : taskTypeDao.update(taskType)
+    )
+        .ignoreElement()
+        .subscribeOn(Schedulers.io());
   }
 
   public Completable create(TaskType taskType) {
@@ -58,14 +60,16 @@ public class TaskRepository {
         ? Completable.complete()
         : taskDao.delete(task)
             .ignoreElement()
-        .subscribeOn(Schedulers.io());
+            .subscribeOn(Schedulers.io());
   }
 
   public Completable delete(TaskType taskType) {
-    return (taskType.getTaskTypeId() == 0)
-        ? Completable.complete()
-        : taskTypeDao.delete(taskType)
-            .ignoreElement()
+    return (
+        (taskType.getTaskTypeId() == 0)
+            ? Completable.complete()
+            : taskTypeDao.delete(taskType)
+                .ignoreElement()
+    )
         .subscribeOn(Schedulers.io());
   }
 
@@ -88,5 +92,9 @@ public class TaskRepository {
 
   public LiveData<List<TaskType>> getTaskTypes() {
     return taskTypeDao.getAll();
+  }
+
+  public LiveData<TaskType> getTaskType(long id) {
+    return taskTypeDao.select(id);
   }
 }

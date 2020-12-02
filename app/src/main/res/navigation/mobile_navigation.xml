@@ -20,11 +20,34 @@
     android:id="@+id/nav_task"
     android:label="@string/menu_tasks"
     android:name="edu.cnm.deepdive.bard.controller.ui.task.TaskTypeFragment"
-    tools:layout="@layout/fragment_task_type"/>
+    tools:layout="@layout/fragment_task_type">
+
+    <action
+      android:id="@+id/open_dialog"
+      app:destination="@id/nav_task_type">
+      <argument
+        android:name="task_type_id"
+        app:argType="long"/>
+
+    </action>
+  </fragment>
 
   <fragment
     android:id="@+id/nav_music"
     android:label="@string/menu_music"
     android:name="edu.cnm.deepdive.bard.controller.ui.music.MusicFragment"
     tools:layout="@layout/fragment_music"/>
+
+  <dialog
+    android:id="@+id/nav_task_type"
+    android:name="edu.cnm.deepdive.bard.controller.ui.task.TaskTypeDialogFragment"
+    tools:layout="@layout/fragment_task_type_dialog">
+
+    <argument
+      android:name="task_type_id"
+      app:argType="long"
+      android:defaultValue="0L"/>
+  </dialog>
+
+
 </navigation>

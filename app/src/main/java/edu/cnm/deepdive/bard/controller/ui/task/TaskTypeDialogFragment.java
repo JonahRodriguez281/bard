@@ -15,20 +15,29 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 import edu.cnm.deepdive.bard.R;
-import edu.cnm.deepdive.bard.databinding.FragmentCreateTaskTypePropertiesBinding;
+import edu.cnm.deepdive.bard.databinding.FragmentTaskTypeDialogBinding;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
 import org.jetbrains.annotations.NotNull;
 
-public class CreateTaskTypePropertiesFragment extends DialogFragment implements TextWatcher {
+public class TaskTypeDialogFragment extends DialogFragment implements TextWatcher {
 
-  private FragmentCreateTaskTypePropertiesBinding binding;
+  private FragmentTaskTypeDialogBinding binding;
   private AlertDialog dialog;
   private TaskTypeViewModel viewModel;
+  private long id;
+  private TaskType taskType;
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    //noinspection ConstantConditions
+    id = TaskTypeDialogFragmentArgs.fromBundle(getArguments()).getTaskTypeId();
+  }
 
   @NonNull
   @Override
   public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-    binding = FragmentCreateTaskTypePropertiesBinding.inflate(
+    binding = FragmentTaskTypeDialogBinding.inflate(
         LayoutInflater.from(getContext()), null, false);
     dialog = new Builder(getContext())
         .setIcon(R.drawable.ic_plus)
@@ -51,11 +60,21 @@ public class CreateTaskTypePropertiesFragment extends DialogFragment implements 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    //noinspection ConstantConditions
-    viewModel = new ViewModelProvider(getActivity()).get(TaskTypeViewModel.class);
+    viewModel = new ViewModelProvider(this).get(TaskTypeViewModel.class);
     binding.name.addTextChangedListener(this);
     binding.description.addTextChangedListener(this);
     binding.duration.addTextChangedListener(this);
+    if (id != 0) {
+      viewModel.setTaskTypeId(id);
+      viewModel.getTaskType().observe(getViewLifecycleOwner(), (taskType) -> {
+        this.taskType = taskType;
+        binding.name.setText(taskType.getName());
+        binding.description.setText(taskType.getDescription());
+        binding.duration.setText(String.valueOf(taskType.getDuration()));
+      });
+    } else {
+      taskType = new TaskType();
+    }
   }
 
   @Override
@@ -75,20 +94,19 @@ public class CreateTaskTypePropertiesFragment extends DialogFragment implements 
     Button positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
     //noinspection ConstantConditions
     positive.setEnabled(
-        !binding.name.getText().toString().trim().isEmpty() ||
-        !binding.description.getText().toString().trim().isEmpty() ||
-        !binding.description.getText().toString().trim().isEmpty());
+        !binding.name.getText().toString().trim().isEmpty() &&
+        !binding.description.getText().toString().trim().isEmpty() &&
+        !binding.duration.getText().toString().trim().isEmpty());
   }
 
   @SuppressWarnings("ConstantConditions")
   private void create() {
     String name = binding.name.getText().toString().trim();
     String description = binding.description.getText().toString().trim();
-    int duration = Integer.parseInt(binding.description.getText().toString().trim());
-    TaskType taskType = new TaskType();
+    int duration = Integer.parseInt(binding.duration.getText().toString().trim());
     taskType.setName(name);
     taskType.setDescription(description);
     taskType.setDuration(duration);
-    viewModel.create(taskType);
+    viewModel.update(taskType);
   }
 }

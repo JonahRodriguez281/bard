@@ -27,12 +27,11 @@ public class TaskTypeFragment extends Fragment {
   private TaskTypeViewModel taskTypeViewModel;
   private FragmentTaskTypeBinding binding;
 
-  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentTaskTypeBinding.inflate(getLayoutInflater());
-    binding.addTaskTypeFab.setOnClickListener((v) -> {
-      // TODO Show CreateTaskTypePropertiesFragment.
-    });
+    binding.addTaskTypeFab.setOnClickListener((v) ->
+        Navigation.findNavController(getView()).navigate(TaskTypeFragmentDirections.openDialog(0)));
     binding.taskList.setOnItemClickListener((parent, view, position, id) -> {
       Task task = (Task) parent.getItemAtPosition(position);
       Toast.makeText(getContext(), task.getTaskName(), Toast.LENGTH_LONG).show();
@@ -41,7 +40,7 @@ public class TaskTypeFragment extends Fragment {
   }
 
   @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     setupViewModel();
   }
@@ -54,7 +53,8 @@ public class TaskTypeFragment extends Fragment {
       //noinspection ConstantConditions
       TaskTypeAdapter adapter = new TaskTypeAdapter(
           activity, taskTypes,
-          taskTypeViewModel::update,
+          (taskType) -> Navigation.findNavController(
+              getView()).navigate(TaskTypeFragmentDirections.openDialog(taskType.getTaskTypeId())),
           taskTypeViewModel::create,
           taskTypeViewModel::delete
       );
