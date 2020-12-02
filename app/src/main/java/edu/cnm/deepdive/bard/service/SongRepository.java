@@ -7,6 +7,9 @@ import edu.cnm.deepdive.bard.model.entity.Song;
 import io.reactivex.Completable;
 import java.util.List;
 
+/**
+ * Repository for Song Objects
+ */
 public class SongRepository {
 
   private final Context context;
@@ -33,19 +36,19 @@ public class SongRepository {
             .ignoreElement();
   }
 
-  LiveData<Song> getSongById(long songId) {
+  public LiveData<Song> getSongById(long songId) {
     return songDao.getSongById(songId);
   }
 
-  LiveData<List<Song>> getSongByName(String songNameFragment) {
+  public LiveData<List<Song>> getSongByName(String songNameFragment) {
     return songDao.getSongByName(String.format("%%%s%%", songNameFragment)); // %%%s%% used to create %...% for LIKE in SQL
   }
 
-  LiveData<List<Song>> getSongByArtist(String artistNameFragment) {
+  public LiveData<List<Song>> getSongByArtist(String artistNameFragment) {
     return songDao.getSongByArtist(String.format("%%%s%%", artistNameFragment));
   }
 
-  LiveData<List<Song>> getSongByAlbum(String albumNameFragment) {
+  public LiveData<List<Song>> getSongByAlbum(String albumNameFragment) {
     return songDao.getSongByAlbum(String.format("%%%s%%", albumNameFragment));
   }
 }

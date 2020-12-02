@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.bard.service;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -24,6 +25,10 @@ import java.util.LinkedList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Class representing the Database. Implements the DAO classes and creates an Instance of the Bard
+ * Database
+ */
 @Database(
     entities = {Song.class, Task.class, TaskType.class, User.class}, version = 1)
 @TypeConverters({Converters.class})
@@ -37,6 +42,11 @@ public abstract class BardDatabase extends RoomDatabase {
     BardDatabase.context = context;
   }
 
+  /**
+   * Creates an Instance of the Database
+   *
+   * @return The Bard Database
+   */
   public static BardDatabase getInstance() {
     return InstanceHolder.INSTANCE;
   }
@@ -59,11 +69,12 @@ public abstract class BardDatabase extends RoomDatabase {
 
   private static class Callback extends RoomDatabase.Callback {
 
+    @SuppressLint("CheckResult")
     @Override
     public void onCreate(@NonNull @NotNull SupportSQLiteDatabase db) {
       super.onCreate(db);
       List<TaskType> taskTypes = new LinkedList<>();
-      for (String name : new String[] {"TaskType A", "TaskType B", "TaskType C"}) {
+      for (String name : new String[]{"TaskType A", "TaskType B", "TaskType C"}) {
         TaskType taskType = new TaskType();
         taskType.setName(name);
         taskType.setDescription(name);
@@ -73,24 +84,38 @@ public abstract class BardDatabase extends RoomDatabase {
       BardDatabase.getInstance().getTaskTypeDao().insert(taskTypes)
           .subscribeOn(Schedulers.io())
           .subscribe(
-              (ids) -> {},
+              (ids) -> {
+              },
               (throwable) -> Log.e(getClass().getSimpleName(), throwable.getMessage(), throwable)
           );
     }
   }
 
+  /**
+   * Class holding Converter Methods for Various data types
+   */
   public static class Converters {
 
+    /**
+     * Converts a Date object to a Long
+     *
+     * @param value Date being converted
+     * @return A new Long Value
+     */
     @TypeConverter
     public static Long dateToLong(Date value) {
       return (value != null) ? value.getTime() : null;
     }
 
+    /**
+     * Converts a Long into a Date Object
+     *
+     * @param value Long being converted
+     * @return A new Date object
+     */
     @TypeConverter
     public static Date longToDate(Long value) {
       return (value != null) ? new Date(value) : null;
     }
-
-
   }
 }

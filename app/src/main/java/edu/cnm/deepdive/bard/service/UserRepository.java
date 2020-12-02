@@ -16,11 +16,16 @@ public class UserRepository {
 
   private final Context context;
   private final UserDao userDao;
+  private final SpotifySignInService signInService;
+  private final SpotifyServiceProxy webService;
 
   public UserRepository(Context context) {
     this.context = context;
     userDao = BardDatabase.getInstance().getUserDao();
+    signInService = SpotifySignInService.getInstance();
+    webService = SpotifyServiceProxy.getInstance();
   }
+
   public Completable save(User user) {
     return (user.getUserId() == 0)
         ? userDao.insert(user)
@@ -29,6 +34,7 @@ public class UserRepository {
         : userDao.update(user)
             .ignoreElement();
   }
+
   public Completable delete(User user) {
     return (user.getUserId() == 0)
         ? Completable.complete()

@@ -8,6 +8,9 @@ import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.databinding.ActivityLoginBinding;
 import edu.cnm.deepdive.bard.service.SpotifySignInService;
 
+/**
+ * Activity used to Login to the app and refresh ID tokens to stay logged in
+ */
 public class LoginActivity extends AppCompatActivity {
 
   private ActivityLoginBinding binding;

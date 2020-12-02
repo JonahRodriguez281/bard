@@ -8,6 +8,9 @@ import edu.cnm.deepdive.bard.service.SpotifySignInService;
 import net.openid.appauth.AuthorizationException;
 import net.openid.appauth.AuthorizationResponse;
 
+/**
+ * Activity for answering the response for authorization for login
+ */
 public class LoginResponseActivity extends AppCompatActivity {
 
   @Override

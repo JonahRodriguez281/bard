@@ -23,6 +23,9 @@ import net.openid.appauth.AuthorizationServiceConfiguration;
 import net.openid.appauth.ResponseTypeValues;
 import org.json.JSONException;
 
+/**
+ * Class for Authorization services provided by the Spotify API and Sign-in functionality
+ */
 public class SpotifySignInService {
 
   private static final String AUTH_STATE_KEY = "auth_state";
@@ -69,14 +72,29 @@ public class SpotifySignInService {
     preferences.edit().putString(AUTH_STATE_KEY, updatedAuthState).commit();
   }
 
+  /**
+   * Sets this specified instance as the context for the SignInService
+   */
   public static void setContext(Context context) {
     SpotifySignInService.context = context;
   }
 
+  /**
+   * Creates the Instance of the SpotifySignInService
+   */
   public static SpotifySignInService getInstance() {
     return InstanceHolder.INSTANCE;
   }
 
+  /**
+   * Method for beginning the Sign In Process, by requesting a response from the web service, and
+   * flagging the response on whether it succeeds or fails
+   *
+   * @param activity          The Sign In activity
+   * @param requestCode       The code of the response
+   * @param completedActivity The activity for a completed sign in
+   * @param cancelledActivity The activity for a cancelled sign in
+   */
   public void startSignIn(AppCompatActivity activity, int requestCode,
       Class<? extends AppCompatActivity> completedActivity,
       Class<? extends AppCompatActivity> cancelledActivity) {
@@ -95,9 +113,18 @@ public class SpotifySignInService {
             Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK),
         PendingIntent.getActivity(activity, requestCode, cancelledIntent,
             Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
-        );
+    );
   }
 
+  /**
+   * Method used invoke actions based on the response from the service based on whether or not the
+   * request succeeds or fails
+   *
+   * @param response      Response from the service
+   * @param ex            Exception thrown for failed Sign in
+   * @param successIntent Intent for a successful request
+   * @param failureIntent Intent for a failed request
+   */
   public void completeSignIn(AuthorizationResponse response, AuthorizationException ex,
       Intent successIntent, Intent failureIntent) {
     authState.update(response, ex);
@@ -120,6 +147,9 @@ public class SpotifySignInService {
     }
   }
 
+  /**
+   * Method used to refresh the Access Token, which persists Login status
+   */
   public Single<String> refresh() {
     return Single.create((emitter) ->
         authState.performActionWithFreshTokens(service, new AuthStateAction() {
@@ -132,7 +162,6 @@ public class SpotifySignInService {
             }
           }
         })
-
     );
   }
 
@@ -141,6 +170,6 @@ public class SpotifySignInService {
     @SuppressLint("StaticFieldLeak")
     private static final SpotifySignInService INSTANCE = new SpotifySignInService();
 
-   }
+  }
 
 }

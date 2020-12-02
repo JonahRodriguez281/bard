@@ -6,6 +6,9 @@ import edu.cnm.deepdive.bard.service.BardDatabase;
 import edu.cnm.deepdive.bard.service.SpotifySignInService;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Instantiates Bard as an Application that extends the Application class.
+ */
 public class BardApplication extends Application {
 
   @Override

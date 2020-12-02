@@ -16,6 +16,9 @@ import edu.cnm.deepdive.bard.service.TaskRepository;
 import io.reactivex.disposables.CompositeDisposable;
 import java.util.List;
 
+/**
+ * Framework for what to display in the Session Fragment
+ */
 public class SessionViewModel extends AndroidViewModel implements LifecycleObserver {
 
   private final TaskRepository taskRepository;
@@ -25,6 +28,10 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
   private final MutableLiveData<Throwable> throwable;
   private final CompositeDisposable pending;
 
+  /**
+   * Constructor for the SessionViewModel
+   * @param application The application context needed for the ViewModel
+   */
   public SessionViewModel(@NonNull Application application) {
     super(application);
     taskRepository = new TaskRepository(application);
@@ -35,6 +42,10 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
     pending = new CompositeDisposable();
   }
 
+  /**
+   * Method for Deleting a {@link Task}
+   * @param task The Task to be deleted
+   */
   @SuppressLint("CheckResult")
   public void delete(Task task) {
     throwable.setValue(null);
@@ -48,14 +59,23 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
     );
   }
 
+  /**
+   * Returns all Tasks
+   */
   public LiveData<List<TaskWithType>> getTasks() {
     return taskRepository.getAll();
   }
 
+  /**
+   * Returns a song
+   */
   public LiveData<Song> getSong() {
     return song;
   }
 
+  /**
+   * Getter for returning Throwable
+   */
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }

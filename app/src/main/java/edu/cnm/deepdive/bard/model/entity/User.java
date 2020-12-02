@@ -8,10 +8,13 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * User entity stored in the database along with attributes, fields, foreign keys, and indices.
+ */
 @SuppressWarnings("NotNullFieldNotInitialized")
 @Entity(
     indices = {
-    @Index(value = "oauth_key", unique = true)
+        @Index(value = "oauth_key", unique = true)
     }
 )
 public class User {
@@ -30,29 +33,47 @@ public class User {
   @SerializedName("id")
   private String accountName;
 
+  /**
+   * Returns the id of a User
+   */
   public long getUserId() {
     return userId;
   }
 
+  /**
+   * Sets the id for a User
+   */
   public void setUserId(long userId) {
     this.userId = userId;
   }
 
-
+  /**
+   * Returns the OauthKey of a User
+   */
+  @NonNull
   public String getOauthKey() {
     return oauthKey;
   }
 
-  public void setOauthKey(String oauthKey) {
+  /**
+   * Sets the OauthKey for a User
+   */
+  public void setOauthKey(@NonNull String oauthKey) {
     this.oauthKey = oauthKey;
   }
 
-
+  /**
+   * Returns the account name of a User
+   */
+  @NonNull
   public String getAccountName() {
     return accountName;
   }
 
-  public void setAccountName(String accountName) {
+  /**
+   * Sets the account name for a User
+   */
+  public void setAccountName(@NonNull String accountName) {
     this.accountName = accountName;
   }
 }

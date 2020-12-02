@@ -6,6 +6,9 @@ import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
 import java.util.List;
 
+/**
+ * POJO for TaskTypes with their Tasks
+ */
 @SuppressWarnings("NotNullFieldNotInitialized")
 public class TaskTypeWithTasks extends TaskType {
 
@@ -17,11 +20,17 @@ public class TaskTypeWithTasks extends TaskType {
   )
   private List<Task> tasks;
 
+  /**
+   * Returns a list of Tasks of the TaskType
+   */
   @NonNull
   public List<Task> getTasks() {
     return tasks;
   }
 
+  /**
+   * Sets a List of Tasks for a TaskType
+   */
   public void setTasks(@NonNull List<Task> tasks) {
     this.tasks = tasks;
   }

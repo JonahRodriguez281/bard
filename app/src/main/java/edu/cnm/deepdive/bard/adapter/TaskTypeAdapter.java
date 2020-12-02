@@ -14,14 +14,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Adapter for correctly displaying {@link TaskType}s in the {@link edu.cnm.deepdive.bard.controller.ui.task.TaskTypeFragment}
+ */
 public class TaskTypeAdapter extends ArrayAdapter<TaskType> {
 
   private final LayoutInflater inflater;
-  private final List<TaskType> taskTypes;
   private final EditClickListener editClickListener;
   private final AddClickListener addClickListener;
   private final DeleteClickListener deleteClickListener;
 
+  /**
+   * Constructor for the TaskTypeAdapter
+   * @param context Relevant context for the constructor
+   * @param editClickListener ClickListener for Edit button
+   * @param addClickListener ClickListener for Add button
+   * @param deleteClickListener ClickListener for Delete button
+   */
   public TaskTypeAdapter(@NonNull Context context, List<TaskType> taskTypes,
       EditClickListener editClickListener,
       AddClickListener addClickListener,
@@ -31,7 +40,6 @@ public class TaskTypeAdapter extends ArrayAdapter<TaskType> {
     this.editClickListener = editClickListener;
     this.addClickListener = addClickListener;
     this.deleteClickListener = deleteClickListener;
-    this.taskTypes = taskTypes;
   }
 
   @NonNull
@@ -50,18 +58,25 @@ public class TaskTypeAdapter extends ArrayAdapter<TaskType> {
     return binding.getRoot();
   }
 
+  /**
+   * Interface for the Edit button displayed for each task
+   */
   public interface EditClickListener {
 
     void onClick(TaskType taskType);
   }
 
-
+  /**
+   * Interface for the Add button displayed for each task
+   */
   public interface AddClickListener {
 
     void onClick(TaskType taskType);
   }
 
-
+  /**
+   * Interface for the Delete button displayed for each task
+   */
   public interface DeleteClickListener {
 
     void onClick(TaskType taskType);

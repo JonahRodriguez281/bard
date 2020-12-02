@@ -16,18 +16,24 @@ import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter for correctly displaying {@link Task}s in the {@link edu.cnm.deepdive.bard.controller.ui.session.SessionFragment}.
+ */
 public class TaskAdapter extends ArrayAdapter<TaskWithType> {
 
   private final LayoutInflater inflater;
-  private final List<TaskWithType> currentTasks;
   private final DeleteClickListener deleteClickListener;
 
+  /**
+   * Constructor for the TaskAdapter
+   * @param context Relevant context for the constructor
+   * @param deleteClickListener ClickListener for Delete button
+   */
   public TaskAdapter(@NonNull Context context, List<TaskWithType> currentTasks,
       DeleteClickListener deleteClickListener) {
     super(context, R.layout.item_current_task, currentTasks);
     inflater = LayoutInflater.from(context);
     this.deleteClickListener = deleteClickListener;
-    this.currentTasks = currentTasks;
   }
 
   @NonNull
@@ -44,6 +50,9 @@ public class TaskAdapter extends ArrayAdapter<TaskWithType> {
     return binding.getRoot();
   }
 
+  /**
+   * Interface for the Delete button displayed for each task
+   */
   public interface DeleteClickListener {
 
     void onClick(Task task);

@@ -19,6 +19,9 @@ import edu.cnm.deepdive.bard.databinding.FragmentTaskTypeDialogBinding;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Fragment for Dialog when editing and creating new TaskTypes
+ */
 public class TaskTypeDialogFragment extends DialogFragment implements TextWatcher {
 
   private FragmentTaskTypeDialogBinding binding;
@@ -90,6 +93,9 @@ public class TaskTypeDialogFragment extends DialogFragment implements TextWatche
     checkSubmitConditions();
   }
 
+  /**
+   * Method for indicating conditions required to activate Positive submit button
+   */
   private void checkSubmitConditions() {
     Button positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
     //noinspection ConstantConditions
@@ -99,6 +105,9 @@ public class TaskTypeDialogFragment extends DialogFragment implements TextWatche
         !binding.duration.getText().toString().trim().isEmpty());
   }
 
+  /**
+   * Method used to create a brand new TaskType upon pressing Submit button in dialog
+   */
   @SuppressWarnings("ConstantConditions")
   private void create() {
     String name = binding.name.getText().toString().trim();

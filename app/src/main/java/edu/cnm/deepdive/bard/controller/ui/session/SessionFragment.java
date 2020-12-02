@@ -14,11 +14,21 @@ import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.adapter.TaskAdapter;
 import edu.cnm.deepdive.bard.databinding.FragmentSessionBinding;
 
+/**
+ * Fragment for the current Session
+ */
 public class SessionFragment extends Fragment {
 
   private SessionViewModel sessionViewModel;
   private FragmentSessionBinding binding;
 
+  /**
+   * Method for what to display when the Fragment is created for the first time.
+   * @param inflater Inflater for inflating the ViewBinding that will be displayed
+   * @param container Parent of the ViewGroup
+   * @param savedInstanceState Saved state of the view
+   * @return View displayed when fragment is first created
+   */
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentSessionBinding.inflate(getLayoutInflater());
@@ -32,12 +42,18 @@ public class SessionFragment extends Fragment {
     setupViewModel();
   }
 
+  /**
+   * Method to instantiate the Floating Action Button once the base view has been created
+   */
   public void setupViews() {
     //noinspection ConstantConditions
     binding.addTaskFab.setOnClickListener((view) -> Navigation.findNavController(getView())
     .navigate(R.id.action_nav_session_to_nav_task));
   }
 
+  /**
+   * Method for providing the {@link SessionViewModel} as the ViewModel used for this fragment
+   */
   public void setupViewModel() {
     FragmentActivity activity = getActivity();
     sessionViewModel = new ViewModelProvider(this).get(SessionViewModel.class);

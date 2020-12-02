@@ -18,18 +18,31 @@ import androidx.navigation.Navigation;
 import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.adapter.TaskAdapter;
 import edu.cnm.deepdive.bard.adapter.TaskTypeAdapter;
+import edu.cnm.deepdive.bard.controller.ui.session.SessionViewModel;
 import edu.cnm.deepdive.bard.databinding.FragmentTaskTypeBinding;
 import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
 
+/**
+ * Fragment for the current Session
+ */
 public class TaskTypeFragment extends Fragment {
 
   private TaskTypeViewModel taskTypeViewModel;
   private FragmentTaskTypeBinding binding;
 
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  /**
+   * Method for what to display when the Fragment is created for the first time.
+   *
+   * @param inflater           Inflater for inflating the ViewBinding that will be displayed
+   * @param container          Parent of the ViewGroup
+   * @param savedInstanceState Saved state of the view
+   * @return View displayed when fragment is first created
+   */
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentTaskTypeBinding.inflate(getLayoutInflater());
+    //noinspection ConstantConditions
     binding.addTaskTypeFab.setOnClickListener((v) ->
         Navigation.findNavController(getView()).navigate(TaskTypeFragmentDirections.openDialog(0)));
     binding.taskList.setOnItemClickListener((parent, view, position, id) -> {
@@ -45,6 +58,9 @@ public class TaskTypeFragment extends Fragment {
     setupViewModel();
   }
 
+  /**
+   * Method for providing the {@link TaskTypeViewModel} as the ViewModel used for this fragment
+   */
   public void setupViewModel() {
     FragmentActivity activity = getActivity();
     taskTypeViewModel = new ViewModelProvider(this).get(TaskTypeViewModel.class);
@@ -66,11 +82,5 @@ public class TaskTypeFragment extends Fragment {
           }
         }
     );
-  }
-
-  @Override
-  public void onActivityResult(int requestCode, int resultCode,
-      @Nullable Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
   }
 }

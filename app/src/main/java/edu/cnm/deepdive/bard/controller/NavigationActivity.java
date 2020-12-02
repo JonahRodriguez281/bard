@@ -25,12 +25,20 @@ import edu.cnm.deepdive.bard.service.SpotifySignInService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * Activity used for Navigation through the app, using the Navigate Framework
+ */
 public class NavigationActivity extends AppCompatActivity {
 
   private ActivityNavigationBinding binding;
   private AppBarConfiguration appBarConfig;
   private NavController navController;
 
+  /**
+   * Binds and Inflates the Navigation type (Navigation Drawer) and displays options for navigating
+   * across different fragments
+   * @param savedInstanceState Saved state of Navigation Activity
+   */
   @SuppressLint("CheckResult")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +72,9 @@ public class NavigationActivity extends AppCompatActivity {
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.settings, menu);
     return true;
   }
-
 
   @Override
   public boolean onSupportNavigateUp() {

@@ -12,6 +12,10 @@ import io.reactivex.Maybe;
 import io.reactivex.Single;
 import java.util.List;
 
+/**
+ * The {@link UserDao} provides the CRUD (create, read, update, delete) functions, as well as
+ * specialized queries for the repository.
+ */
 @Dao
 public interface UserDao {
 

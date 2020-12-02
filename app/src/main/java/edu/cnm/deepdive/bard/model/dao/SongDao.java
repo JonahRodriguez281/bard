@@ -11,6 +11,10 @@ import io.reactivex.Single;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The {@link SongDao} provides the CRUD (create, read, update, delete) functions, as well as
+ * specialized queries for the repository.
+ */
 @Dao
 public interface SongDao {
 

@@ -17,6 +17,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 
+/**
+ * Service Proxy for Incorporating Spotify Service and Endpoints
+ */
 public interface SpotifyServiceProxy {
 
   @GET("me")
@@ -25,8 +28,6 @@ public interface SpotifyServiceProxy {
   // TODO Finish Writing all Endpoints for service
   @GET("me/tracks")
   Single<List<Song>> getLibrary(@Header("Authorization") String bearerToken);
-
-
 
   static SpotifyServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;
