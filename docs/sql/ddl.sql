@@ -20,13 +20,13 @@ CREATE TABLE IF NOT EXISTS `Task`
     `description`          TEXT                              NOT NULL,
     `duration`             INTEGER                           NOT NULL,
     `start`                INTEGER                           NOT NULL,
-    `end`                  INTEGER                           NOT NULL,
+    `end`                  INTEGER,
     `break`                INTEGER                           NOT NULL,
     `spotify_playlist_key` TEXT,
-    `user_id`              INTEGER                           NOT NULL,
-    `task_type_id`         INTEGER                           NOT NULL,
+    `user_id`              INTEGER,
+    `task_type_id`         INTEGER,
     FOREIGN KEY (`user_id`) REFERENCES `User` (`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE,
-    FOREIGN KEY (`task_type_id`) REFERENCES `TaskType` (`task_type_id`) ON UPDATE NO ACTION ON DELETE CASCADE
+    FOREIGN KEY (`task_type_id`) REFERENCES `TaskType` (`task_type_id`) ON UPDATE NO ACTION ON DELETE SET NULL
 );
 
 CREATE INDEX IF NOT EXISTS `index_Task_start` ON `Task` (`start`);
