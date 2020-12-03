@@ -1,3 +1,5 @@
+# [Bard Repository](https://github.com/JonahRodriguez281/bard)
+
 ## Summary
 
 The purpose of this app is to keep the user productive through the use of a musical incentive. The app creates a playlist (connected to Spotify) with a length based on a timer set by the user to maximize productivity using the Pomodoro Method.
