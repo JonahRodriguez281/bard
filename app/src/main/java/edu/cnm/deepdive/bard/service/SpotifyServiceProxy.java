@@ -4,8 +4,10 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.bard.BuildConfig;
+import edu.cnm.deepdive.bard.model.dto.TracksResponse;
 import edu.cnm.deepdive.bard.model.entity.Song;
 import edu.cnm.deepdive.bard.model.entity.User;
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import java.util.List;
 import okhttp3.OkHttpClient;
@@ -16,6 +18,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Service Proxy for Incorporating Spotify Service and Endpoints
@@ -27,7 +31,10 @@ public interface SpotifyServiceProxy {
 
   // TODO Finish Writing all Endpoints for service
   @GET("me/tracks")
-  Single<List<Song>> getLibrary(@Header("Authorization") String bearerToken);
+  Single<TracksResponse> getTracks(@Header("Authorization") String bearerToken);
+
+  @POST("me/player/queue")
+  Completable addToQueue(@Header("Authorization") String bearerToken, @Query("uri") String trackUri);
 
   static SpotifyServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;

@@ -3,8 +3,14 @@ package edu.cnm.deepdive.bard.model.entity;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import edu.cnm.deepdive.bard.model.dto.Album;
+import edu.cnm.deepdive.bard.model.dto.Artist;
+import java.util.List;
 
 /**
  * Song entity stored in the database along with attributes, fields, foreign keys, and indices.
@@ -27,13 +33,32 @@ public class Song {
   @ColumnInfo(name = "song_id")
   private long songId;
 
+  @ColumnInfo(name = "spotify_key")
+  @Expose
+  @SerializedName("id")
+  private String spotifyKey;
+
   @ColumnInfo(name = "song_name")
+  @Expose
+  @SerializedName("name")
   private String songName;
 
   private String artist;
 
+  @Expose
+  @Ignore
+  private List<Artist> artists;
+
   private String album;
 
+  @Expose
+  @SerializedName("album")
+  @Ignore
+  private Album albumDto;
+
+  @ColumnInfo(name = "song_duration")
+  @Expose
+  @SerializedName("duration_ms")
   private int songDuration;
 
   @ColumnInfo(name = "user_id", index = true)
@@ -51,6 +76,14 @@ public class Song {
    */
   public void setSongId(long songId) {
     this.songId = songId;
+  }
+
+  public String getSpotifyKey() {
+    return spotifyKey;
+  }
+
+  public void setSpotifyKey(String spotifyKey) {
+    this.spotifyKey = spotifyKey;
   }
 
   /**
@@ -81,6 +114,14 @@ public class Song {
     this.artist = artist;
   }
 
+  public List<Artist> getArtists() {
+    return artists;
+  }
+
+  public void setArtists(List<Artist> artists) {
+    this.artists = artists;
+  }
+
   /**
    * Returns the album a song is found on
    */
@@ -93,6 +134,14 @@ public class Song {
    */
   public void setAlbum(String album) {
     this.album = album;
+  }
+
+  public Album getAlbumDto() {
+    return albumDto;
+  }
+
+  public void setAlbumDto(Album albumDto) {
+    this.albumDto = albumDto;
   }
 
   /**

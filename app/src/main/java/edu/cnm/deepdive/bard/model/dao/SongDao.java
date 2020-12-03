@@ -5,8 +5,10 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import edu.cnm.deepdive.bard.model.entity.Song;
+import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
 import io.reactivex.Single;
 import java.util.Collection;
 import java.util.List;
@@ -47,6 +49,9 @@ public interface SongDao {
 
   @Query("SELECT * FROM Song WHERE song_id = :songId")
   LiveData<Song> getSongById(long songId);
+
+  @Query("SELECT * FROM Song ORDER BY song_name ASC")
+  LiveData<List<Song>> getAll();
 
   @Query("SELECT * FROM Song WHERE song_name LIKE :songNameFragment ORDER BY song_name ASC")
   LiveData<List<Song>> getSongByName(String songNameFragment);

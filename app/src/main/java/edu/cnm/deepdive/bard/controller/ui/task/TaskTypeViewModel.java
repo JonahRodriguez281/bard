@@ -3,6 +3,7 @@ package edu.cnm.deepdive.bard.controller.ui.task;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LifecycleObserver;
@@ -58,8 +59,7 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
     pending.add(
         taskRepository.update(taskType)
             .subscribe(
-                () -> {
-                },
+                () -> {},
                 throwable::postValue
             )
     );
@@ -134,4 +134,5 @@ public class TaskTypeViewModel extends AndroidViewModel implements LifecycleObse
   public LiveData<Throwable> getThrowable() {
     return throwable;
   }
+
 }

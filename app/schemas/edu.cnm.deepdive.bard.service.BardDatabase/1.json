@@ -2,17 +2,23 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6780880e94419d263d79b1357feb3880",
+    "identityHash": "736fce8e9e5770c63664efc362d3f512",
     "entities": [
       {
         "tableName": "Song",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`song_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `song_name` TEXT, `artist` TEXT, `album` TEXT, `songDuration` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`song_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `spotify_key` TEXT, `song_name` TEXT, `artist` TEXT, `album` TEXT, `song_duration` INTEGER NOT NULL, `user_id` INTEGER NOT NULL, FOREIGN KEY(`user_id`) REFERENCES `User`(`user_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "songId",
             "columnName": "song_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "spotifyKey",
+            "columnName": "spotify_key",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "songName",
@@ -34,7 +40,7 @@
           },
           {
             "fieldPath": "songDuration",
-            "columnName": "songDuration",
+            "columnName": "song_duration",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -323,7 +329,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6780880e94419d263d79b1357feb3880')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '736fce8e9e5770c63664efc362d3f512')"
     ]
   }
 }
