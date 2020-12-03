@@ -3,21 +3,15 @@ package edu.cnm.deepdive.bard.controller;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration.Builder;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.AppBarConfiguration.Builder;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.databinding.ActivityNavigationBinding;
 import edu.cnm.deepdive.bard.service.SpotifyServiceProxy;
@@ -34,11 +28,6 @@ public class NavigationActivity extends AppCompatActivity {
   private AppBarConfiguration appBarConfig;
   private NavController navController;
 
-  /**
-   * Binds and Inflates the Navigation type (Navigation Drawer) and displays options for navigating
-   * across different fragments
-   * @param savedInstanceState Saved state of Navigation Activity
-   */
   @SuppressLint("CheckResult")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +45,7 @@ public class NavigationActivity extends AppCompatActivity {
             (user) -> Log.d(getClass().getSimpleName(), user.getAccountName()),
             (throwable) -> Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show()
         );
- }
+  }
 
   private void setupNavigation() {
     appBarConfig = new Builder(R.id.nav_session, R.id.nav_music,

@@ -10,8 +10,6 @@ import androidx.annotation.Nullable;
 import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.databinding.ItemTaskBinding;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -26,9 +24,11 @@ public class TaskTypeAdapter extends ArrayAdapter<TaskType> {
 
   /**
    * Constructor for the TaskTypeAdapter
-   * @param context Relevant context for the constructor
-   * @param editClickListener ClickListener for Edit button
-   * @param addClickListener ClickListener for Add button
+   *
+   * @param context             Relevant context for the constructor
+   * @param taskTypes           List of TaskTypes to be adapted
+   * @param editClickListener   ClickListener for Edit button
+   * @param addClickListener    ClickListener for Add button
    * @param deleteClickListener ClickListener for Delete button
    */
   public TaskTypeAdapter(@NonNull Context context, List<TaskType> taskTypes,

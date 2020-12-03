@@ -7,13 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.MutableLiveData;
 import edu.cnm.deepdive.bard.R;
-import edu.cnm.deepdive.bard.adapter.TaskTypeAdapter.DeleteClickListener;
 import edu.cnm.deepdive.bard.databinding.ItemCurrentTaskBinding;
 import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.pojo.TaskWithType;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +23,9 @@ public class TaskAdapter extends ArrayAdapter<TaskWithType> {
 
   /**
    * Constructor for the TaskAdapter
-   * @param context Relevant context for the constructor
+   *
+   * @param context             Relevant context for the constructor
+   * @param currentTasks        List of Tasks to be adapted
    * @param deleteClickListener ClickListener for Delete button
    */
   public TaskAdapter(@NonNull Context context, List<TaskWithType> currentTasks,

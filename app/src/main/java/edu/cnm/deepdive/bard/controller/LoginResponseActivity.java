@@ -1,9 +1,8 @@
 package edu.cnm.deepdive.bard.controller;
 
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import edu.cnm.deepdive.bard.R;
+import androidx.appcompat.app.AppCompatActivity;
 import edu.cnm.deepdive.bard.service.SpotifySignInService;
 import net.openid.appauth.AuthorizationException;
 import net.openid.appauth.AuthorizationResponse;

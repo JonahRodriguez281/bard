@@ -1,15 +1,12 @@
 package edu.cnm.deepdive.bard.service;
 
-import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.bard.BuildConfig;
 import edu.cnm.deepdive.bard.model.dto.TracksResponse;
-import edu.cnm.deepdive.bard.model.entity.Song;
 import edu.cnm.deepdive.bard.model.entity.User;
 import io.reactivex.Completable;
 import io.reactivex.Single;
-import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
@@ -34,7 +31,8 @@ public interface SpotifyServiceProxy {
   Single<TracksResponse> getTracks(@Header("Authorization") String bearerToken);
 
   @POST("me/player/queue")
-  Completable addToQueue(@Header("Authorization") String bearerToken, @Query("uri") String trackUri);
+  Completable addToQueue(@Header("Authorization") String bearerToken,
+      @Query("uri") String trackUri);
 
   static SpotifyServiceProxy getInstance() {
     return InstanceHolder.INSTANCE;

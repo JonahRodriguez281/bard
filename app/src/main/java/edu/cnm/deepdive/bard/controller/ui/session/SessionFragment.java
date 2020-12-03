@@ -14,6 +14,7 @@ import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.adapter.TaskAdapter;
 import edu.cnm.deepdive.bard.databinding.FragmentSessionBinding;
 
+
 /**
  * Fragment for the current Session
  */
@@ -22,13 +23,7 @@ public class SessionFragment extends Fragment {
   private SessionViewModel sessionViewModel;
   private FragmentSessionBinding binding;
 
-  /**
-   * Method for what to display when the Fragment is created for the first time.
-   * @param inflater Inflater for inflating the ViewBinding that will be displayed
-   * @param container Parent of the ViewGroup
-   * @param savedInstanceState Saved state of the view
-   * @return View displayed when fragment is first created
-   */
+  @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     binding = FragmentSessionBinding.inflate(getLayoutInflater());
@@ -48,7 +43,7 @@ public class SessionFragment extends Fragment {
   public void setupViews() {
     //noinspection ConstantConditions
     binding.addTaskFab.setOnClickListener((view) -> Navigation.findNavController(getView())
-    .navigate(R.id.action_nav_session_to_nav_task));
+        .navigate(R.id.action_nav_session_to_nav_task));
   }
 
   /**

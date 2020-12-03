@@ -12,9 +12,13 @@
   <string name="menu_music">Music</string>
   <string name="add_task">Add Task</string>
   <string name="add_task_type">Add Task Type</string>
+  <string name="song_name">Name</string>
+  <string name="artist_name">Artist</string>
+  <string name="album_name">Album</string>
   <string name="task_name">Name</string>
   <string name="task_description">Description</string>
   <string name="task_duration">Duration (mins)</string>
+
   <string name="new_task_condensed">Add</string>
   <string name="task_type_name_hint">Name</string>
   <string name="task_type_description_hint">Description</string>

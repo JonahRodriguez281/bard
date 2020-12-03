@@ -78,10 +78,16 @@ public class Song {
     this.songId = songId;
   }
 
+  /**
+   * Returns the Spotify Playlist Key of a Track
+   */
   public String getSpotifyKey() {
     return spotifyKey;
   }
 
+  /**
+   * Sets the Spotify Playlist Key for a Track
+   */
   public void setSpotifyKey(String spotifyKey) {
     this.spotifyKey = spotifyKey;
   }
@@ -114,10 +120,16 @@ public class Song {
     this.artist = artist;
   }
 
+  /**
+   * Returns a list of Artists of a Track
+   */
   public List<Artist> getArtists() {
     return artists;
   }
 
+  /**
+   * Sets the Artists for a Track
+   */
   public void setArtists(List<Artist> artists) {
     this.artists = artists;
   }
@@ -136,10 +148,16 @@ public class Song {
     this.album = album;
   }
 
+  /**
+   * Returns the Album Data Transfer Object of a Track
+   */
   public Album getAlbumDto() {
     return albumDto;
   }
 
+  /**
+   * Sets the Album Data Transfer Object for a Track
+   */
   public void setAlbumDto(Album albumDto) {
     this.albumDto = albumDto;
   }

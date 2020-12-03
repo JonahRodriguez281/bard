@@ -1,0 +1,12 @@
+edu.cnm.deepdive.bard
+edu.cnm.deepdive.bard.adapter
+edu.cnm.deepdive.bard.controller
+edu.cnm.deepdive.bard.controller.ui.music
+edu.cnm.deepdive.bard.controller.ui.session
+edu.cnm.deepdive.bard.controller.ui.task
+edu.cnm.deepdive.bard.databinding
+edu.cnm.deepdive.bard.model.dao
+edu.cnm.deepdive.bard.model.dto
+edu.cnm.deepdive.bard.model.entity
+edu.cnm.deepdive.bard.model.pojo
+edu.cnm.deepdive.bard.service

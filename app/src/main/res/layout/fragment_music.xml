@@ -7,6 +7,50 @@
   android:layout_height="match_parent"
   tools:context=".controller.ui.music.MusicFragment">
 
+  <TextView
+    android:id="@+id/song_name_header"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/song_name"
+    style="@style/Task.Header"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/header_baseline"
+    app:layout_constraintEnd_toStartOf="@id/artist_name_header"
+    app:layout_constraintStart_toStartOf="parent"/>
+
+  <TextView
+    android:id="@+id/artist_name_header"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/artist_name"
+    style="@style/Task.Header"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBaseline_toBaselineOf="@id/song_name_header"
+    app:layout_constraintEnd_toStartOf="@id/album_name_header"
+    app:layout_constraintStart_toEndOf="@id/song_name_header"/>
+
+  <TextView
+    android:id="@+id/album_name_header"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/half_static_spacing"
+    android:text="@string/album_name"
+    style="@style/Task.Header"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBaseline_toBaselineOf="@id/song_name_header"
+    app:layout_constraintStart_toEndOf="@id/artist_name_header"/>
+
+  <androidx.constraintlayout.widget.Barrier
+    android:id="@+id/header_baseline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:barrierDirection="bottom"
+    app:constraint_referenced_ids="song_name_header, artist_name_header, album_name_header"/>
+
+
   <ListView
     android:id="@+id/song_list"
     android:layout_width="match_parent"
@@ -17,17 +61,4 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintBottom_toBottomOf="parent"/>
 
-  <TextView
-    android:id="@+id/text_music"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:textAlignment="center"
-    android:textSize="20sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

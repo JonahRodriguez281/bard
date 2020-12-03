@@ -6,11 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import com.spotify.sdk.android.authentication.AuthenticationClient;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.bard.R;
 import io.reactivex.Single;
 import net.openid.appauth.AuthState;
@@ -21,7 +18,6 @@ import net.openid.appauth.AuthorizationResponse;
 import net.openid.appauth.AuthorizationService;
 import net.openid.appauth.AuthorizationServiceConfiguration;
 import net.openid.appauth.ResponseTypeValues;
-import org.json.JSONException;
 
 /**
  * Class for Authorization services provided by the Spotify API and Sign-in functionality

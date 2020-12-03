@@ -2,9 +2,8 @@ package edu.cnm.deepdive.bard.controller;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import edu.cnm.deepdive.bard.R;
+import androidx.appcompat.app.AppCompatActivity;
 import edu.cnm.deepdive.bard.databinding.ActivityLoginBinding;
 import edu.cnm.deepdive.bard.service.SpotifySignInService;
 
@@ -32,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
               binding = ActivityLoginBinding.inflate(getLayoutInflater());
               setContentView(binding.getRoot());
               binding.signIn.setOnClickListener((v) -> {
-                service.startSignIn(this,1000, LoginResponseActivity.class, getClass());
+                service.startSignIn(this, 1000, LoginResponseActivity.class, getClass());
               });
             }
         );

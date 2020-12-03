@@ -30,6 +30,7 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
 
   /**
    * Constructor for the SessionViewModel
+   *
    * @param application The application context needed for the ViewModel
    */
   public SessionViewModel(@NonNull Application application) {
@@ -44,6 +45,7 @@ public class SessionViewModel extends AndroidViewModel implements LifecycleObser
 
   /**
    * Method for Deleting a {@link Task}
+   *
    * @param task The Task to be deleted
    */
   @SuppressLint("CheckResult")

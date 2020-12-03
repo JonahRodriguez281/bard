@@ -7,21 +7,27 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.databinding.ItemSongBinding;
 import edu.cnm.deepdive.bard.model.entity.Song;
-import java.util.ArrayList;
 import java.util.List;
-import org.jetbrains.annotations.NotNull;
 
+/**
+ * Adapter for correctly displaying {@link Song}s in the {@link edu.cnm.deepdive.bard.controller.ui.music.MusicFragment}.
+ */
 public class SongAdapter extends ArrayAdapter<Song> {
 
   private final LayoutInflater inflater;
 
-  public SongAdapter(Context context, List<Song> songList) {
-    super(context, R.layout.item_song, songList);
+  /**
+   * Constructor for the TaskAdapter
+   *
+   * @param context Relevant context for the constructor
+   * @param songs   List of songs to be adapted
+   */
+  public SongAdapter(Context context, List<Song> songs) {
+    super(context, R.layout.item_song, songs);
+
     inflater = LayoutInflater.from(context);
   }
 
@@ -33,8 +39,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
         : ItemSongBinding.inflate(inflater, parent, false);
     Song song = getItem(position);
     binding.songName.setText(song.getSongName());
-    binding.songArtist.setText(song.getArtist());
-    binding.songAlbum.setText(song.getAlbum());
+    binding.songArtist.setText(song.getArtists().toString());
+    binding.songAlbum.setText(song.getAlbumDto().getName());
     return binding.getRoot();
   }
 

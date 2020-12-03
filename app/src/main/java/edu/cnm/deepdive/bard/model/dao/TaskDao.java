@@ -62,4 +62,4 @@ public interface TaskDao {
 
   @Query("SELECT * FROM Task WHERE spotify_playlist_key = :spotifyPlaylistKey")
   LiveData<List<Task>> getByPlaylistKey(String spotifyPlaylistKey);
-  }
+}

@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import edu.cnm.deepdive.bard.R;
 import edu.cnm.deepdive.bard.databinding.FragmentTaskTypeDialogBinding;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Fragment for Dialog when editing and creating new TaskTypes
@@ -46,7 +45,8 @@ public class TaskTypeDialogFragment extends DialogFragment implements TextWatche
         .setIcon(R.drawable.ic_plus)
         .setTitle(R.string.create_task_type_properties_title)
         .setView(binding.getRoot())
-        .setNeutralButton(android.R.string.cancel, (dlg, which) -> {})
+        .setNeutralButton(android.R.string.cancel, (dlg, which) -> {
+        })
         .setPositiveButton(android.R.string.ok, (dlg, which) -> create())
         .create();
     dialog.setOnShowListener((dlg) -> checkSubmitConditions());
@@ -101,8 +101,8 @@ public class TaskTypeDialogFragment extends DialogFragment implements TextWatche
     //noinspection ConstantConditions
     positive.setEnabled(
         !binding.name.getText().toString().trim().isEmpty() &&
-        !binding.description.getText().toString().trim().isEmpty() &&
-        !binding.duration.getText().toString().trim().isEmpty());
+            !binding.description.getText().toString().trim().isEmpty() &&
+            !binding.duration.getText().toString().trim().isEmpty());
   }
 
   /**

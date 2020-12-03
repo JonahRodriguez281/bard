@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Relation;
 import edu.cnm.deepdive.bard.model.entity.Task;
 import edu.cnm.deepdive.bard.model.entity.TaskType;
-import java.util.List;
 
 /**
  * POJO for Tasks with their TaskTypes
