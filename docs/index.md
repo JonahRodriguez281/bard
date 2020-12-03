@@ -33,13 +33,13 @@ I've created this app as a person that has never been able to focus without musi
 
 The current state of the app is certainly "In Progress", and requires further development to be used as intended. All of the pieces presented are compilable, buildable, and runnable. The app does contain some functionality in terms of round trip usage of the database for everything locally on the machine, however much of the unimplemented functionality revolves around the Spotify API as I was not able to implement a way to display the Tracks that it successfully retrieves from the website. Because of this, I was not able to implement a timer for the session when doing tasks. As of now the implementation for the application consists of a few preloaded Task Types in the Task Screen, which can be edited, deleted, or added to the Session by creating new Tasks based on those Task Types. In the Session Screen, it displays the created Tasks from the Task Screen and is where the Timer and Music Player would have been implemented to construct the basis for the Pomodoro Application.
 
-### Incomplete Elements
+##### Incomplete Elements
 
 The Music Screen is retrieving tracks from the Spotify API, however, all it is doing is Logging them in Logcat and not doing anything with them. There is a songList and a SongAdapter that is in charge of converting the Track Objects received into Song Objects to be displayed, however, it is currently not working, leaving the Music Screen Blank.
 The Session Screen has no functionality to implement a timer based on the duration of the created Tasks, so as of now, it is just displaying the created Tasks from the Task Screen.
 As the app is only intended for one User, there is no functionality to save a User to the database, nor is there a way to persist the Login for more than about 15 minutes, as the default Spotify Token refresh time can only persist for that long.
 
-### Aesthetic Elements not Implemented
+##### Aesthetic Elements not Implemented
 
 The buttons in the Task Screen for Editing Tasks, Adding Tasks to the Session, and Deleting Tasks should have at least a label for accessibility or even a pop-up box notifying the User of the functions of each button.
 
@@ -51,6 +51,8 @@ The Spotify API is capable of many different functions, including the ability to
 
 * Ran & Tested on LG Stylo 4 Android Phone - Android API 26
 * Minimum API needed to run is Android API 21
+* The Spotify App downloaded on the same machine as the Bard Application
+* A current Spotify Account
 
 ### 3rd-Party Libraries Used
 
@@ -91,7 +93,7 @@ The Spotify API is capable of many different functions, including the ability to
 
 ## [Data Definition Language](ddl.md)
 
-## [Bard Javadocs](api/index.html)
+## [Bard Javadocs](https://jonahrodriguez281.github.io/bard/api/index.html)
 
 ## [Notice](notice.md)
 

@@ -1,4 +1,4 @@
 ## Wireframe
 
 
-[![Bard Wireframe](images/wireframe.png)](pdf/wireframe.pdf)
+[![Bard Wireframe](images/final-wireframe.png)](pdf/final-wireframe.pdf)
